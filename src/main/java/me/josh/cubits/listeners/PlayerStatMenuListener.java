@@ -4,7 +4,9 @@ import me.josh.cubits.Main;
 import me.josh.cubits.commands.MenuCommand;
 import me.josh.cubits.commands.SummeryCommand;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -50,6 +52,7 @@ public class PlayerStatMenuListener implements Listener {
             }
         }else if (e.getCurrentItem().getType().equals(Material.BARRIER)){
             new MenuCommand().executeCommand(plugin, p, new String[]{"0"});
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             //p.closeInventory();
         }else if (e.getCurrentItem().getType().equals(Material.GRAY_DYE)){
             return;

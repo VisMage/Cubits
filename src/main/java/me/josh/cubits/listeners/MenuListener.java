@@ -8,7 +8,9 @@ import me.josh.cubits.commands.SummeryCommand;
 import me.josh.cubits.menus.QuestMenu;
 import me.josh.cubits.menus.index.IndexMenu;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -48,39 +50,48 @@ public class MenuListener implements Listener {
         // Check for individual item types, CustomModelData, or Item Name
         if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10002) { // Stats
             new PlayerStatMenuCommand().executeCommand(plugin, p, new String[]{"0"});
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
         } else if (e.getCurrentItem().getType().equals(Material.GRAY_STAINED_GLASS_PANE)) {
             return;
         } else if (e.getCurrentItem().getType().equals(Material.PLAYER_HEAD)) {
             if (playerProfile.getActiveCubitEntity().getCubit() != null) {
                 new SummeryCommand().executeCommand(plugin, p, new String[]{"1"});
+                SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             }
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10007) { // Achievements
             p.sendMessage("Achievements coming soon!");
-            return;
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10001) { // Cubits
             new PetMenuCommand().executeCommand(plugin, p, new String[]{"1"});
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
         } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             p.closeInventory();
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10005) { //Quests
             QuestMenu.openQuestMenu(plugin, p);
-            return;
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10004) { // Collections
             p.sendMessage("Collections coming soon!");
-            return;
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10003) { // Bag
             new BagCategoryCommand().executeCommand(plugin, p, new String[]{"0"});
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
         } else if (e.getCurrentItem().getType().equals(Material.GRAY_DYE)) {
             return;
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10006) { // Battlepass
             p.sendMessage("It slumbers...");
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             return;
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10008) { // Leaderboards
             p.sendMessage("Leaderboards and Player Profiles coming soon!");
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             return;
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10009) { // Index
             new IndexMenu().executeCommand(plugin, p, new String[]{"0"});
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10010) { // Options
             p.sendMessage("Coming soon!");
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             return;
         }
 

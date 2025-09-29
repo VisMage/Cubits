@@ -158,6 +158,7 @@ public class BagCookingListener implements Listener {
 //            }
 
         } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             new BagCategoryCommand().executeCommand(plugin, p, new String[]{"0"});
             //p.closeInventory();
         }

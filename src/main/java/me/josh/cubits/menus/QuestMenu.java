@@ -2,14 +2,11 @@ package me.josh.cubits.menus;
 
 import me.josh.cubits.Main;
 import me.josh.cubits.menus.shopkeepers.CubitGui;
-import me.josh.cubits.playerdata.MiniGameToken;
 import me.josh.cubits.playerdata.PlayerProfile;
 import me.josh.cubits.playerdata.PlayerVariables;
-import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;

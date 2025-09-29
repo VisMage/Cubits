@@ -177,6 +177,11 @@ public class PlayerProfile {
         playerVariables.replace(variableName, amt + playerVariables.get(variableName));
     }
 
+    public void setPlayerVariable(PlayerVariables variableName, int amt) {
+        //amt = amt < 0 ? 0 : amt; // Add to protect against negative values
+        playerVariables.replace(variableName, amt);
+    }
+
     // Getters and Setters
     public UUID getUuid() {
         return uuid;

@@ -6,7 +6,9 @@ import me.josh.cubits.menus.index.IndexMenuCosmetic;
 import me.josh.cubits.menus.index.IndexMenuCubit;
 import me.josh.cubits.menus.index.IndexMenuDummy;
 import me.josh.cubits.menus.index.IndexMenuTreats;
+import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -46,18 +48,25 @@ public class IndexMenuListener implements Listener {
         if (e.getCurrentItem().getType().equals(Material.GRAY_STAINED_GLASS_PANE)) {
             return;
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10106) {
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             IndexMenuCubit.OpenIndexMenuCubit(plugin, p, 1);
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10101) {
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             IndexMenuTreats.OpenIndexMenuTreats(plugin, p, 1);
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10102) {
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             IndexMenuDummy.OpenIndexMenuDummy(plugin, p, 1);
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10103) {
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             //TRINKETS HERE
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10104) {
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             IndexMenuCosmetic.OpenIndexMenuCosmetic(plugin, p, 1);
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10105) {
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             return;
         } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             new MenuCommand().executeCommand(plugin, p, new String[]{"0"});
             //p.closeInventory();
         }

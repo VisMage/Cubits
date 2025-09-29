@@ -86,6 +86,7 @@ public class BagTreatListener implements Listener {
 
         // Check for individual item types, CustomModelData, or Item Name
         if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             BagCategoryMenu.openBagCategoryMenu(plugin, p);
             //p.closeInventory();
         }

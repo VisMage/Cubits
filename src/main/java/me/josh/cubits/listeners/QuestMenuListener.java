@@ -2,7 +2,9 @@ package me.josh.cubits.listeners;
 
 import me.josh.cubits.Main;
 import me.josh.cubits.commands.MenuCommand;
+import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -43,19 +45,16 @@ public class QuestMenuListener implements Listener {
         if (e.getCurrentItem().getType().equals(Material.GRAY_STAINED_GLASS_PANE)) {
             return;
         } else if (e.getCurrentItem().getType().equals(Material.STRUCTURE_VOID)) {
-            //Add test to give new slayer task, and claim prior reward. Add actual slayer master to claim and shop
-            //Also add quest claiming
+            //Add quest claiming
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
         } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
             new MenuCommand().executeCommand(plugin, p, new String[]{"0"});
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             //p.closeInventory();
         }
 
 
-
-
     }
-
-
 
 
 

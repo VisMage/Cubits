@@ -3,8 +3,10 @@ package me.josh.cubits.listeners;
 import me.josh.cubits.Main;
 import me.josh.cubits.commands.PetMenuCommand;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -31,15 +33,18 @@ public class SummeryListener implements Listener {
 
 
         if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             e.getWhoClicked().closeInventory();
 
         } else if (e.getCurrentItem().getType().equals(Material.ARROW)) {
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             new PetMenuCommand().executeCommand(plugin, player, new String[]{"1"});
 
         } else if (e.getCurrentItem().getType().equals(Material.PLAYER_HEAD)) {
             return;
 
         } else if (e.getCurrentItem().getType().equals(Material.GRAY_DYE)) {
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             //Check if player has cubit equipped
             if (playerProfile.getActiveCubitEntity().getCubit() != null){
                 //Despawn cubit
@@ -54,6 +59,7 @@ public class SummeryListener implements Listener {
             }
 
         } else if (e.getCurrentItem().getType().equals(Material.LEAD)) {
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             //Check if player has cubit equipped
             if (playerProfile.getActiveCubitEntity().getCubit() != null){
                 //Despawn cubit

@@ -73,7 +73,10 @@ public enum PlayerVariables {
     QUEST_AMOUNT_3,
     QUEST_TARGET_AMOUNT_3,
     QUEST_TYPE_3,
-    QUEST_ID_3
+    QUEST_ID_3,
+
+    POTION_A,
+    POTION_B
 
 
 

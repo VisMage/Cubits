@@ -2,6 +2,7 @@ package me.josh.cubits.listeners;
 
 import me.josh.cubits.Main;
 import me.josh.cubits.menus.SlayerMenu;
+import me.josh.cubits.menus.SlayerTask;
 import me.josh.cubits.playerdata.PlayerProfile;
 import me.josh.cubits.playerdata.PlayerVariables;
 import me.josh.cubits.utils.SoundUtil;
@@ -74,23 +75,32 @@ public class SlayerMenuListener implements Listener {
         if (e.getCurrentItem().getType().equals(Material.GRAY_STAINED_GLASS_PANE)) {
             return;
         } else if (e.getCurrentItem().getType().equals(Material.IRON_SWORD)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_TARGET_AMOUNT) == 0 || playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_AMOUNT) >= playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_TARGET_AMOUNT)) {
-                // GIVE NEW SLAYER TASK
+            if (playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_TARGET_AMOUNT) == 0) {
+                SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
+                SlayerTask.getRandomEntry(plugin, p);
+            }else if(playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_AMOUNT) >= playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_TARGET_AMOUNT)){
+                SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
+                int reward = playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_POINTS_REWARD);
+                playerProfile.setPlayerVariable(PlayerVariables.SLAYER_TARGET_AMOUNT, reward);
+                playerProfile.setPlayerVariable(PlayerVariables.SLAYER_POINTS_REWARD, 0);
+                playerProfile.setPlayerVariable(PlayerVariables.SLAYER_AMOUNT, 0);
+                playerProfile.setPlayerVariable(PlayerVariables.SLAYER_TARGET_AMOUNT, 0);
+                playerProfile.addPlayerVariables(PlayerVariables.SLAYER_COMPLETED, 1);
+                playerProfile.addPlayerVariables(PlayerVariables.SLAYER_STREAK, 1);
+                SlayerTask.getRandomEntry(plugin, p);
+            }else{
+                SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }
-            //Add test to give new slayer task, and claim prior reward. Add actual slayer master to claim and shop
-            //Also add quest claiming
+            SlayerMenu.openSlayerMenu(plugin, p);
+        } else if (e.getCurrentItem().getType().equals(Material.GOLD_INGOT)) {
+            // ADD slayer shop menu
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BIT, 1, 1);
         } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             p.closeInventory();
         }
 
-
-        // ADD Redeem slayer task if above target, and give task. If target is 0, just give task
-        // ADD slayer shop menu
-
-
     }
-
-
 
 
 

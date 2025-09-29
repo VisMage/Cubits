@@ -6,10 +6,12 @@ import me.josh.cubits.cubitdata.Cubit;
 import me.josh.cubits.menus.RebirthMenu;
 import me.josh.cubits.menus.PetMenu;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.utils.SoundUtil;
 import me.josh.cubits.utils.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -42,7 +44,7 @@ public class PetMenuListener implements Listener {
         if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
 
             new MenuCommand().executeCommand(plugin, player, new String[]{"0"});
-            //e.getWhoClicked().closeInventory();
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
 
         } else if (e.getCurrentItem().getType().equals(Material.ARROW)) {
 
@@ -52,18 +54,12 @@ public class PetMenuListener implements Listener {
             } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "Next")) {
                 PetMenu.OpenPetMenu(plugin, player, page + 1);
             }
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
 
         } else if (e.getCurrentItem().getType().equals(Material.PLAYER_HEAD)) {
             if (!e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "Current Cubit")) {
 
-                /*if(plugin.getPlayerProfileManager().getPlayerProfileByUUID(player.getUniqueId()).getActiveCubit() != null) {
-                    Cubit current = plugin.getPlayerProfileManager().getPlayerProfileByUUID(player.getUniqueId()).getActiveCubit().getCubit();
-                }
-
-                if (current != null) {
-                    // Do nothing, and play a noteblock sound
-                }*/
-
+                SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
                 // Create a NamespacedKey
                 NamespacedKey key = new NamespacedKey(plugin, "uuid");
 
@@ -87,9 +83,11 @@ public class PetMenuListener implements Listener {
         } else if (e.getCurrentItem().getType().equals(Material.NETHER_STAR)) {
             //e.getWhoClicked().sendMessage(ChatColor.RED + "Rebirth coming soon!");
             RebirthMenu.OpenRebirthMenu(plugin, player, 1);
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
 
         } else if (e.getCurrentItem().getType().equals(Material.LEAD)) {
 
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             //Check if player has a cubit equipped
             if (plugin.getPlayerProfileManager().getProfileOf(player.getUniqueId()).getActiveCubitEntity() == null) {
                 e.getWhoClicked().sendMessage(ChatColor.RED + "You don't have a cubit equipped!");

@@ -92,7 +92,6 @@ public class SellitemStoreListener implements Listener {
 
         if (e.getCurrentItem().getType().equals(Material.GRAY_STAINED_GLASS_PANE)) {
             return;
-
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK)) {
 
             int money = 0;
@@ -116,6 +115,7 @@ public class SellitemStoreListener implements Listener {
             return;
 
         } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             p.closeInventory();
         }
 

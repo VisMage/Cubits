@@ -50,7 +50,7 @@ public class SlayerMenu extends CubitGui {
         BACK_ICON.setItemMeta(back_meta);
 
 
-        SLAYERSHOP = new ItemStack(Material.CLOCK, 1);
+        SLAYERSHOP = new ItemStack(Material.GOLD_INGOT, 1);
         ItemMeta treats_meta = SLAYERSHOP.getItemMeta();
         treats_meta.setDisplayName("Slayer Shop");
         treats_meta.setCustomModelData(10101);
@@ -59,7 +59,7 @@ public class SlayerMenu extends CubitGui {
         SLAYERSHOP.setItemMeta(treats_meta);
 
 
-        SLAYERINFO = new ItemStack(Material.CLOCK, 1);
+        SLAYERINFO = new ItemStack(Material.PAPER, 1);
         ItemMeta dummyItems_meta = SLAYERINFO.getItemMeta();
         dummyItems_meta.setDisplayName("Slayer Info");
         dummyItems_meta.setCustomModelData(10102);

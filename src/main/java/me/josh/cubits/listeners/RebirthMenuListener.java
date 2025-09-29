@@ -6,10 +6,12 @@ import me.josh.cubits.cubitdata.CubitRebirth;
 import me.josh.cubits.menus.PetMenu;
 import me.josh.cubits.menus.RebirthMenu;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.utils.SoundUtil;
 import me.josh.cubits.utils.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -40,27 +42,21 @@ public class RebirthMenuListener implements Listener {
 
         if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
             PetMenu.OpenPetMenu(plugin, player, 1);
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
 
         } else if (e.getCurrentItem().getType().equals(Material.ARROW)) {
-
             int page = Integer.parseInt(e.getView().getTitle().replace(ChatColor.DARK_PURPLE + "Rebirth - page ", ""));
             if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "Back")) {
                 RebirthMenu.OpenRebirthMenu(plugin, player, page - 1);
             } else if (e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "Next")) {
                 RebirthMenu.OpenRebirthMenu(plugin, player, page + 1);
             }
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
 
         } else if (e.getCurrentItem().getType().equals(Material.PLAYER_HEAD)) {
             if (!e.getCurrentItem().getItemMeta().getDisplayName().equals(ChatColor.LIGHT_PURPLE + "Current Cubit")) {
 
-                /*if(plugin.getPlayerProfileManager().getPlayerProfileByUUID(player.getUniqueId()).getActiveCubit() != null) {
-                    Cubit current = plugin.getPlayerProfileManager().getPlayerProfileByUUID(player.getUniqueId()).getActiveCubit().getCubit();
-                }
-
-                if (current != null) {
-                    // Do nothing, and play a noteblock sound
-                }*/
-
+                SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
                 // Create a NamespacedKey
                 NamespacedKey key = new NamespacedKey(plugin, "uuid");
 

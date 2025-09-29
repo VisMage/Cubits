@@ -479,7 +479,7 @@ public class FindCubitListener implements Listener {
                 if (entity instanceof Guardian){
                     Random r = new Random();
                     float chance = r.nextFloat();
-                    if (chance <= 1/1f) {
+                    if (chance <= 1/1000f) {
                         plugin.getPlayerProfileManager().getProfileOf(player.getUniqueId()).addCubit(CubitBase.PUFFER_GUARDIAN);
                     }else {
                     }

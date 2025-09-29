@@ -136,6 +136,7 @@ public class ShopkeeperListener implements Listener {
 
 
         } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             p.closeInventory();
         }
 

@@ -1,8 +1,9 @@
-name: Cubits2
+name: Cubits
 main: me.josh.cubits.Main
 version: 1.0
 description: Cubits 2.0
 api-version: 1.21
+author: Vis_Mage
 
 commands:
   cb:

@@ -8,9 +8,11 @@ import me.josh.cubits.items.ItemBase;
 import me.josh.cubits.playerdata.MiniGameToken;
 import me.josh.cubits.playerdata.PlayerProfile;
 import me.josh.cubits.playerdata.PlayerVariables;
+import me.josh.cubits.utils.SoundUtil;
 import me.josh.cubits.utils.Utils;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -59,10 +61,12 @@ public class StarterListener implements Listener {
             return;
         } else if (container.has(key, PersistentDataType.STRING)) {
             chosenStarter = container.get(key, PersistentDataType.STRING);
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             p.closeInventory();
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 1010) {
             return;
         } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             p.closeInventory();
             return;
         }

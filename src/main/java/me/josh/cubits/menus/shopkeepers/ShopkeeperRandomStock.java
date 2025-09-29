@@ -18,6 +18,7 @@ public class ShopkeeperRandomStock {
     public static final ShopkeeperRandomStock WANDERING_TRADER;
     public static final ShopkeeperRandomStock FISHING_SHOP;
     public static final ShopkeeperRandomStock BOBA_SHOP;
+    public static final ShopkeeperRandomStock SLAYER_SHOP;
 
     public static final ShopkeeperRandomStock FISHING_TREASURE;
     public static final ShopkeeperRandomStock FORAGING_TREASURE;
@@ -183,6 +184,9 @@ public class ShopkeeperRandomStock {
 
         BOBA_SHOP = new ShopkeeperRandomStock();
         BOBA_SHOP.weightByShopEntry.put(ItemBase.FISHY_CRACKER, 10);
+
+        SLAYER_SHOP = new ShopkeeperRandomStock();
+        SLAYER_SHOP.weightByShopEntry.put(ItemBase.FISHY_CRACKER, 10);
 
 
 

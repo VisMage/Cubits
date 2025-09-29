@@ -35,6 +35,15 @@ public class SetDailyShopStock {
     public static ItemBase wandering_trader_Item1;
     public static ItemBase wandering_trader_Item2;
     public static ItemBase wandering_trader_Item3;
+    public static ItemBase fishing_store_Item1;
+    public static ItemBase fishing_store_Item2;
+    public static ItemBase fishing_store_Item3;
+    public static ItemBase boba_store_Item1;
+    public static ItemBase boba_store_Item2;
+    public static ItemBase boba_store_Item3;
+    public static ItemBase slayer_store_Item1;
+    public static ItemBase slayer_store_Item2;
+    public static ItemBase slayer_store_Item3;
 
 
     public SetDailyShopStock(){
@@ -70,6 +79,15 @@ public class SetDailyShopStock {
         wandering_trader_Item1 = ShopkeeperRandomStock.WANDERING_TRADER.getRandomEntry();
         wandering_trader_Item2 = ShopkeeperRandomStock.WANDERING_TRADER.getRandomEntry();
         wandering_trader_Item3 = ShopkeeperRandomStock.WANDERING_TRADER.getRandomEntry();
+        fishing_store_Item1 = ShopkeeperRandomStock.FISHING_SHOP.getRandomEntry();
+        fishing_store_Item2 = ShopkeeperRandomStock.FISHING_SHOP.getRandomEntry();
+        fishing_store_Item3 = ShopkeeperRandomStock.FISHING_SHOP.getRandomEntry();
+        boba_store_Item1 = ShopkeeperRandomStock.BOBA_SHOP.getRandomEntry();
+        boba_store_Item2 = ShopkeeperRandomStock.BOBA_SHOP.getRandomEntry();
+        boba_store_Item3 = ShopkeeperRandomStock.BOBA_SHOP.getRandomEntry();
+        slayer_store_Item1 = ShopkeeperRandomStock.SLAYER_SHOP.getRandomEntry();
+        slayer_store_Item2 = ShopkeeperRandomStock.SLAYER_SHOP.getRandomEntry();
+        slayer_store_Item3 = ShopkeeperRandomStock.SLAYER_SHOP.getRandomEntry();
 
 
     }

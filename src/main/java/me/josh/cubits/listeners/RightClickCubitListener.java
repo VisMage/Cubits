@@ -4,9 +4,11 @@ import me.josh.cubits.Main;
 import me.josh.cubits.commands.SummeryCommand;
 import me.josh.cubits.cubitdata.Cubit;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.Sound;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Wolf;
@@ -43,6 +45,7 @@ public class RightClickCubitListener implements Listener {
             //Open Pet Summery if Sneaking
             if(e.getPlayer().isSneaking()) {
                 new SummeryCommand().executeCommand(plugin, player, new String[]{"1"});
+                SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
                 return;
             }
 

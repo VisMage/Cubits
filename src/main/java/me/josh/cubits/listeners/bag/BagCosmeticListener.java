@@ -7,8 +7,10 @@ import me.josh.cubits.cubitdata.Cubit;
 import me.josh.cubits.cubitdata.CubitDatabase;
 import me.josh.cubits.items.ItemBase;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -70,12 +72,14 @@ public class BagCosmeticListener implements Listener {
         if (e.getCurrentItem().getType().equals(Material.GRAY_STAINED_GLASS_PANE)) {
             return;
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK)) {
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             usedItem.OnConsume(playerProfile.getActiveCubitEntity().getCubit(), playerProfile);
             playerProfile.removeCubitItem(usedItem , 1);
             //BagCosmeticMenu.OpenBagCosmetics(plugin, p, 1);
             return;
 
         } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             new BagCategoryCommand().executeCommand(plugin, p, new String[]{"0"});
             //p.closeInventory();
         }

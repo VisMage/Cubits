@@ -1,0 +1,10 @@
+name: Cubits2
+main: me.josh.cubits.Main
+version: 1.0
+description: Cubits 2.0
+api-version: 1.21
+
+commands:
+  cb:
+    description: Use /cb help to view all available commands.
+    aliases: [CB, cubit, cubits, CUBIT, CUBITS, pet, PET]

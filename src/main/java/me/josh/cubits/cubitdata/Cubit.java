@@ -1,5 +1,6 @@
 package me.josh.cubits.cubitdata;
 
+import me.josh.cubits.items.ItemBase;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -31,7 +32,7 @@ public class Cubit {
     private int rebirth;
     private UUID originalOwnerUUID;
     private String originalOwnerName;
-    //private Item heldItem;
+    private ItemBase heldItem;
 
 
 
@@ -60,6 +61,7 @@ public class Cubit {
         trait3 = "---";
         trait4 = "---";
         trait5 = "---";
+        heldItem = ItemBase.NONE;
         originalOwnerUUID = player.getUniqueId();
         originalOwnerName = player.getName();
     }
@@ -89,6 +91,7 @@ public class Cubit {
         trait3 = "---";
         trait4 = "---";
         trait5 = "---";
+        heldItem = ItemBase.NONE;
         //originalOwner = ;
     }
 
@@ -242,6 +245,46 @@ public class Cubit {
 
     public void setTrait(String trait) {
         this.trait = trait;
+    }
+
+    public String getTrait2() {
+        return trait2;
+    }
+
+    public void setTrait2(String trait2) {
+        this.trait2 = trait2;
+    }
+
+    public String getTrait3() {
+        return trait3;
+    }
+
+    public void setTrait3(String trait3) {
+        this.trait3 = trait3;
+    }
+
+    public String getTrait4() {
+        return trait4;
+    }
+
+    public void setTrait4(String trait4) {
+        this.trait4 = trait4;
+    }
+
+    public String getTrait5() {
+        return trait5;
+    }
+
+    public void setTrait5(String trait5) {
+        this.trait5 = trait5;
+    }
+
+    public ItemBase getHeldItem() {
+        return heldItem;
+    }
+
+    public void setHeldItem(ItemBase heldItem) {
+        this.heldItem = heldItem;
     }
 
     //End of Getters and Setters

@@ -16,4 +16,6 @@ public class PotionItem extends ItemBase{
     public void OnConsume(Cubit cubit, PlayerProfile playerProfile) {
         System.out.println("Potion Item was consumed!");
     }
+
+    public void OnUnequip(Cubit cubit, PlayerProfile playerProfile){}
 }

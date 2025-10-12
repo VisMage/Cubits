@@ -18,5 +18,9 @@ public class CosmeticItem extends ItemBase{
         playerProfile.getActiveCubitEntity().SetCubitHead();
     }
 
+    public void OnUnequip(Cubit cubit, PlayerProfile playerProfile){
+        // ADD REMOVING COSMETIC HERE (Use Held Item's unequip method as reference)
+    }
+
 
 }

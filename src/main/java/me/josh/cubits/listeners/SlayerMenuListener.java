@@ -3,6 +3,10 @@ package me.josh.cubits.listeners;
 import me.josh.cubits.Main;
 import me.josh.cubits.menus.SlayerMenu;
 import me.josh.cubits.menus.SlayerTask;
+import me.josh.cubits.menus.SlayerUpgradeShop;
+import me.josh.cubits.menus.shopkeepers.SetDailyShopStock;
+import me.josh.cubits.menus.shopkeepers.SlayerShop;
+import me.josh.cubits.playerdata.MiniGameToken;
 import me.josh.cubits.playerdata.PlayerProfile;
 import me.josh.cubits.playerdata.PlayerVariables;
 import me.josh.cubits.utils.SoundUtil;
@@ -81,7 +85,7 @@ public class SlayerMenuListener implements Listener {
             }else if(playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_AMOUNT) >= playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_TARGET_AMOUNT)){
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 int reward = playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_POINTS_REWARD);
-                playerProfile.setPlayerVariable(PlayerVariables.SLAYER_TARGET_AMOUNT, reward);
+                playerProfile.addMiniGameTokens(MiniGameToken.SLAYER_TOKENS, reward);
                 playerProfile.setPlayerVariable(PlayerVariables.SLAYER_POINTS_REWARD, 0);
                 playerProfile.setPlayerVariable(PlayerVariables.SLAYER_AMOUNT, 0);
                 playerProfile.setPlayerVariable(PlayerVariables.SLAYER_TARGET_AMOUNT, 0);
@@ -93,8 +97,14 @@ public class SlayerMenuListener implements Listener {
             }
             SlayerMenu.openSlayerMenu(plugin, p);
         } else if (e.getCurrentItem().getType().equals(Material.GOLD_INGOT)) {
-            // ADD slayer shop menu
             SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BIT, 1, 1);
+            SlayerShop.OpenSlayerStore(plugin, p, "Slayer Shop", SetDailyShopStock.slayer_store_Item1, SetDailyShopStock.slayer_store_Item2, SetDailyShopStock.slayer_store_Item3, playerProfile.getPlayerVariables().get(PlayerVariables.FAVOR_SLAYER_SHOP));
+        } else if (e.getCurrentItem().getType().equals(Material.MAP)) {
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BIT, 1, 1);
+
+        } else if (e.getCurrentItem().getType().equals(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE)) {
+            SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BIT, 1, 1);
+            SlayerUpgradeShop.OpenSlayerUpgradeStore(plugin, p);
         } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
             SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
             p.closeInventory();

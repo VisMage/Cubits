@@ -47,6 +47,7 @@ public class DebugCommand implements SubCommand{
         playerProfile.addCubitItem(ItemBase.KEY_DUSTY, 50);
         playerProfile.addCubitItem(ItemBase.KEY_ICY, 50);
         playerProfile.addCubitItem(ItemBase.ROCK_PELT, 2);
+        playerProfile.addCubitItem(ItemBase.WHITE_PARTY_HAT, 1);
         playerProfile.addCubitItem(ItemBase.STRAWBERRY, 19);
         playerProfile.addCubitItem(ItemBase.WHEAT, 31);
         playerProfile.addMiniGameTokens(MiniGameToken.COINS, 50);

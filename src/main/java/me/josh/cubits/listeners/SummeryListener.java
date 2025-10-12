@@ -2,6 +2,8 @@ package me.josh.cubits.listeners;
 
 import me.josh.cubits.Main;
 import me.josh.cubits.commands.PetMenuCommand;
+import me.josh.cubits.commands.SummeryCommand;
+import me.josh.cubits.items.ItemBase;
 import me.josh.cubits.playerdata.PlayerProfile;
 import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.ChatColor;
@@ -31,6 +33,7 @@ public class SummeryListener implements Listener {
         Player player = (Player) e.getWhoClicked();
         PlayerProfile playerProfile = plugin.getPlayerProfileManager().getProfileOf(player.getUniqueId());
 
+        if(playerProfile.getActiveCubitEntity().getCubit() == null){return;}
 
         if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
             SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASS, 1, 1);
@@ -39,6 +42,12 @@ public class SummeryListener implements Listener {
         } else if (e.getCurrentItem().getType().equals(Material.ARROW)) {
             SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             new PetMenuCommand().executeCommand(plugin, player, new String[]{"1"});
+
+        } else if (e.getCurrentItem().getType().equals(Material.STRING)) {
+            SoundUtil.PlaySoundAll(Sound.ITEM_ARMOR_EQUIP_ELYTRA, 1, 1);
+            ItemBase heldItem = playerProfile.getActiveCubitEntity().getCubit().getHeldItem();
+            heldItem.OnUnequip(playerProfile.getActiveCubitEntity().getCubit(), playerProfile);
+            new SummeryCommand().executeCommand(plugin, player, new String[]{"1"});
 
         } else if (e.getCurrentItem().getType().equals(Material.PLAYER_HEAD)) {
             return;

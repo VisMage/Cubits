@@ -183,10 +183,29 @@ public class ShopkeeperRandomStock {
 
 
         BOBA_SHOP = new ShopkeeperRandomStock();
-        BOBA_SHOP.weightByShopEntry.put(ItemBase.FISHY_CRACKER, 10);
+        BOBA_SHOP.weightByShopEntry.put(ItemBase.FISH_CARP, 10);
+        BOBA_SHOP.weightByShopEntry.put(ItemBase.FISH_CHUB, 10);
+        BOBA_SHOP.weightByShopEntry.put(ItemBase.FISH_CHUB_TITANIC, 5);
+        BOBA_SHOP.weightByShopEntry.put(ItemBase.FISH_SUNFISH, 10);
+        BOBA_SHOP.weightByShopEntry.put(ItemBase.FISH_MOONFISH, 10);
+        BOBA_SHOP.weightByShopEntry.put(ItemBase.FISH_SHROOMA_RED, 10);
+        BOBA_SHOP.weightByShopEntry.put(ItemBase.FISH_SHROOMA_BROWN, 10);
+
+
+
 
         SLAYER_SHOP = new ShopkeeperRandomStock();
-        SLAYER_SHOP.weightByShopEntry.put(ItemBase.FISHY_CRACKER, 10);
+        SLAYER_SHOP.weightByShopEntry.put(ItemBase.DUSTBERRY, 10);
+        SLAYER_SHOP.weightByShopEntry.put(ItemBase.BRAMBLE_FRUIT, 10);
+        SLAYER_SHOP.weightByShopEntry.put(ItemBase.MULCHBERRY, 10);
+        SLAYER_SHOP.weightByShopEntry.put(ItemBase.CAVE_CARROT, 10);
+        SLAYER_SHOP.weightByShopEntry.put(ItemBase.COCOA_BEANS, 10);
+        SLAYER_SHOP.weightByShopEntry.put(ItemBase.GARLIC, 10);
+        SLAYER_SHOP.weightByShopEntry.put(ItemBase.ROCK_SHROOM, 10);
+        SLAYER_SHOP.weightByShopEntry.put(ItemBase.IRONSHROOM, 10);
+        SLAYER_SHOP.weightByShopEntry.put(ItemBase.SLAYER_BANDANA, 30);
+        SLAYER_SHOP.weightByShopEntry.put(ItemBase.SPIKED_BARB, 30);
+
 
 
 

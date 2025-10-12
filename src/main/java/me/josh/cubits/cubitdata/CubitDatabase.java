@@ -253,6 +253,8 @@ public class CubitDatabase {
         //Held Items
         HeldItemDatabase = new ArrayList<>();
         HeldItemDatabase.add(ItemBase.WHITE_PARTY_HAT);
+        HeldItemDatabase.add(ItemBase.SLAYER_BANDANA);
+        HeldItemDatabase.add(ItemBase.SPIKED_BARB);
 
 
 
@@ -299,6 +301,9 @@ public class CubitDatabase {
         CookingItemDatabase.add(ItemBase.VANILLA_COOKIE);
         CookingItemDatabase.add(ItemBase.FORBIDDEN_TREAT);
         CookingItemDatabase.add(ItemBase.MYSTERY_MEAL);
+        CookingItemDatabase.add(ItemBase.OKONOMIYAKI);
+        CookingItemDatabase.add(ItemBase.IKURA);
+        CookingItemDatabase.add(ItemBase.SAKURA_MOCHI);
 
 
 

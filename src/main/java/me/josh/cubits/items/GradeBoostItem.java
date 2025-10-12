@@ -32,7 +32,7 @@ public class GradeBoostItem extends ItemBase{
 
     }
 
-
+    public void OnUnequip(Cubit cubit, PlayerProfile playerProfile){}
 
 
 }

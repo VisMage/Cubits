@@ -366,7 +366,7 @@ public abstract class ItemBase {
 
 
     //FISH
-    public static final DummyItem FISH_CARP= new DummyItem("Carp", "FISH_CARP",
+    public static final DummyItem FISH_CARP = new DummyItem("Carp", "FISH_CARP",
             "Sought after by fishermen.", 999,
             "HUB - Various Islands, Various Biomes", 10);
     public static final DummyItem FISH_CHUB = new DummyItem("Chub", "FISH_CHUB",
@@ -374,19 +374,19 @@ public abstract class ItemBase {
             "HUB - Jungle Island, Jungle Fishing", 10);
     public static final DummyItem FISH_CHUB_TITANIC = new DummyItem("Titanic Chub", "FISH_CHUB_TITANIC",
             "Sought after by fishermen.", 999,
-            "HUB - Jungle Island, Jungle Fishing", 10);
+            "HUB - Jungle Island, Jungle Fishing", 100);
     public static final DummyItem FISH_SUNFISH = new DummyItem("Sunfish", "FISH_SUNFISH",
             "Sought after by fishermen.", 999,
-            "HUB - Jungle Island, Jungle Fishing during Day", 10);
+            "HUB - Jungle Island, Jungle Fishing during Day", 15);
     public static final DummyItem FISH_MOONFISH = new DummyItem("Moonfish", "FISH_MOONFISH",
             "Sought after by fishermen.", 999,
-            "HUB - Jungle Island, Jungle Fishing during Night", 10);
+            "HUB - Jungle Island, Jungle Fishing during Night", 15);
     public static final DummyItem FISH_SHROOMA_RED = new DummyItem("Red Shrooma", "FISH_SHROOMA_RED",
             "Sought after by fishermen.", 999,
-            "HUB - Cubit Island, Roofed Forst and Mushroom Biome Fishing", 10);
+            "HUB - Cubit Island, Roofed Forst and Mushroom Biome Fishing", 12);
     public static final DummyItem FISH_SHROOMA_BROWN = new DummyItem("Brown Shrooma", "FISH_SHROOMA_BROWN",
             "Sought after by fishermen.", 999,
-            "HUB - Cubit Island, Roofed Forst and Mushroom Biome Fishing", 10);
+            "HUB - Cubit Island, Roofed Forst and Mushroom Biome Fishing", 12);
 
 
 
@@ -401,9 +401,22 @@ public abstract class ItemBase {
 
 
     // TRINKETS
+    public static final HeldItem NONE = new HeldItem("None", "NONE",
+            "---", 999,
+            "???", 0,
+            new HashMap<>(){{  }});
     public static final HeldItem WHITE_PARTY_HAT = new HeldItem("White Party Hat", "WHITE_PARTY_HAT",
-            "???", 999,
-            "???", 10);
+            "Boosts charisma!", 999,
+            "Loot boxes from Cubit launch!", 20000,
+            new HashMap<>(){{ put(CubitStat.STAMINA, 50); }});
+    public static final HeldItem SLAYER_BANDANA = new HeldItem("Slayer Bandana", "SLAYER_BANDANA",
+            "---", 999,
+            "Slayer Shop", 20,
+            new HashMap<>(){{ put(CubitStat.STAMINA, 50); }});
+    public static final HeldItem SPIKED_BARB = new HeldItem("Spiked Barb", "SPIKED_BARB",
+            "Protects against the first enemy ability in races.", 999,
+            "Slayer Shop", 20,
+            new HashMap<>(){{ put(CubitStat.STAMINA, 50); }});
 
 
 
@@ -645,6 +658,8 @@ public abstract class ItemBase {
     }
 
     public abstract void OnConsume(Cubit cubit, PlayerProfile playerProfile);
+
+    public abstract void OnUnequip(Cubit cubit, PlayerProfile playerProfile);
 
     // Getters
     public String getName() {

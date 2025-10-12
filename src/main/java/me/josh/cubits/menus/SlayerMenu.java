@@ -25,7 +25,8 @@ public class SlayerMenu extends CubitGui {
         ItemStack BACK_ICON;
         ItemStack SLAYERSHOP;
         ItemStack SLAYERINFO;
-        ItemStack QUEST3;
+        ItemStack SLAYERUPGRADESHOP;
+        ItemStack QUEST;
         ItemStack SLAYERTASK;
         ItemStack QUEST5;
         ItemStack COOKING_ICON;
@@ -69,11 +70,18 @@ public class SlayerMenu extends CubitGui {
         SLAYERINFO.setItemMeta(dummyItems_meta);
 
 
-//        QUEST3 = new ItemStack(Material.CLOCK, 1);
-//        ItemMeta trinkets_meta = QUEST3.getItemMeta();
-//        trinkets_meta.setDisplayName("Quest 3");
-//        trinkets_meta.setCustomModelData(10103);
-//        QUEST3.setItemMeta(trinkets_meta);
+        QUEST = new ItemStack(Material.MAP, 1);
+        ItemMeta trinkets_meta = QUEST.getItemMeta();
+        trinkets_meta.setDisplayName("Quest");
+        trinkets_meta.setCustomModelData(10103);
+        QUEST.setItemMeta(trinkets_meta);
+
+
+        SLAYERUPGRADESHOP = new ItemStack(Material.NETHERITE_UPGRADE_SMITHING_TEMPLATE, 1);
+        ItemMeta trinkets_meta2 = SLAYERUPGRADESHOP.getItemMeta();
+        trinkets_meta2.setDisplayName("Slayer Upgrades");
+        trinkets_meta2.setCustomModelData(10103);
+        SLAYERUPGRADESHOP.setItemMeta(trinkets_meta2);
 
 
         SLAYERTASK = new ItemStack(Material.IRON_SWORD, 1);
@@ -93,28 +101,14 @@ public class SlayerMenu extends CubitGui {
         SLAYERTASK.setItemMeta(skinItems_meta);
 
 
-//        QUEST5 = new ItemStack(Material.CLOCK, 1);
-//        ItemMeta potions_meta = QUEST5.getItemMeta();
-//        potions_meta.setDisplayName("Daily Collection Task");
-//        potions_meta.setCustomModelData(10105);
-//        QUEST5.setItemMeta(potions_meta);
-//
-//        COOKING_ICON = new ItemStack(Material.CAKE, 1);
-//        ItemMeta cooking_meta = COOKING_ICON.getItemMeta();
-//        cooking_meta.setDisplayName("Cooking");
-//        //cooking_meta.setCustomModelData(10101);
-//        COOKING_ICON.setItemMeta(cooking_meta);
-
-
-
         // Create Items to place in inventory
         addBorderTrim(gui);
         gui.setItem(4, getPlayerHeadWithTokenStats(plugin, p));
         gui.setItem(11, SLAYERSHOP);
         gui.setItem(15, SLAYERINFO);
-        //gui.setItem(13, QUEST3);
+        gui.setItem(12, SLAYERUPGRADESHOP);
         gui.setItem(13, SLAYERTASK);
-        //gui.setItem(15, QUEST5);
+        gui.setItem(14, QUEST);
         gui.setItem(22, BACK_ICON);
         //gui.setItem(26, COOKING_ICON);
 

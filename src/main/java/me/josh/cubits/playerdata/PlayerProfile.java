@@ -32,9 +32,12 @@ public class PlayerProfile {
     private HashMap<PlayerStat, Integer> stats;
     private CubitPlayerInventory cubitPlayerInventory;
     private EntityType slayerMob;
+    private EntityType slayerBlock;
     private EntityType questMob1;
     private EntityType questMob2;
     private EntityType questMob3;
+    private ItemBase questFish;
+    private ItemBase questFishBlocked;
 
     public PlayerProfile(){}
 
@@ -60,9 +63,12 @@ public class PlayerProfile {
 
         //slayerMob = EntityType.ZOMBIE;
         slayerMob = null;
+        slayerBlock = null;
         questMob1 = null;
         questMob2 = null;
         questMob3 = null;
+        questFish = null;
+        questFishBlocked = null;
 
     }
 
@@ -294,6 +300,29 @@ public class PlayerProfile {
         this.slayerMob = slayerMob;
     }
 
+    public EntityType getSlayerBlock() {
+        return slayerBlock;
+    }
+
+    public void setSlayerBlock(EntityType slayerBlock) {
+        this.slayerBlock = slayerBlock;
+    }
+
+    public ItemBase getQuestFish() {
+        return questFish;
+    }
+
+    public void setQuestFish(ItemBase questFish) {
+        this.questFish = questFish;
+    }
+
+    public ItemBase getQuestFishBlocked() {
+        return questFishBlocked;
+    }
+
+    public void setQuestFishBlocked(ItemBase questFishBlocked) {
+        this.questFishBlocked = questFishBlocked;
+    }
 
 
 
@@ -301,6 +330,5 @@ public class PlayerProfile {
 
 
 
-
-
+// End of Getters/Setters
 }

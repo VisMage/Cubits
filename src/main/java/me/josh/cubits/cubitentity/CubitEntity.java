@@ -72,20 +72,10 @@ public class CubitEntity {
             skinCurrent = cubit.getAltSkin();
         }
 
-//        GameProfile gameProfileCurrent = new GameProfile(UUID.randomUUID(), null);
-//        gameProfileCurrent.getProperties().put("textures", new Property("textures", skinCurrent));
-//        try {
-//            Method method = currentPetMeta.getClass().getDeclaredMethod("setProfile", GameProfile.class);
-//            method.setAccessible(true);
-//            method.invoke(currentPetMeta, gameProfileCurrent);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         currentPet.setItemMeta(currentPetMeta);
         armorStand.getEquipment().setHelmet(currentPet);
 
     }
-
 
 
 

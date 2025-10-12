@@ -2,7 +2,6 @@ package me.josh.cubits.menus;
 
 import me.josh.cubits.Main;
 import me.josh.cubits.playerdata.PlayerProfile;
-import me.josh.cubits.playerdata.PlayerStat;
 import me.josh.cubits.playerdata.PlayerVariables;
 import me.josh.cubits.utils.WeightedEntry;
 import me.josh.cubits.utils.WeightedList;
@@ -35,54 +34,91 @@ public class SlayerTask {
             traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.HUSK, 15));
         }
 
-        if(playerProfile.getStats().get(PlayerStat.SLAYER) >= 10){
-            traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.BOGGED, 5));
+        if(playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_DRAGON) == 1){
+            traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.ENDER_DRAGON, 5));
         }
+
+        if(playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_WITHER) == 1){
+            traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.WITHER, 5));
+        }
+
+        if(playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_ELDERGUARDIAN) == 1){
+            traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.ELDER_GUARDIAN, 5));
+        }
+
+        if(playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_WARDEN) == 1){
+            traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.WARDEN, 5));
+        }
+
+        if(playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_BOSSRUSH) == 1){
+            traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.EVOKER, 5));
+        }
+
+
 
         // Default Values
         int min = 30;
         int max = 50;
         int tokens = 1;
+        EntityType mob = traits.getWeightedValue();
 
         // Set Values Based on Target
-        if(traits.getWeightedValue() == EntityType.ZOMBIE) {
+        if(mob == EntityType.ZOMBIE) {
             min = 40;
             max = 85;
         }
 
-        if(traits.getWeightedValue() == EntityType.SKELETON) {
+        if(mob == EntityType.SKELETON) {
             min = 30;
             max = 75;
             tokens = 2;
         }
 
-        if(traits.getWeightedValue() == EntityType.SPIDER) {
+        if(mob == EntityType.SPIDER) {
             min = 35;
             max = 70;
             tokens = 2;
         }
 
-        if(traits.getWeightedValue() == EntityType.HUSK) {
+        if(mob == EntityType.HUSK) {
             min = 35;
             max = 65;
             tokens = 3;
         }
 
-        if(traits.getWeightedValue() == EntityType.WITHER_SKELETON) {
+        if(mob == EntityType.WITHER_SKELETON) {
             min = 20;
             max = 40;
             tokens = 4;
         }
 
-        if(traits.getWeightedValue() == EntityType.ENDER_DRAGON) {
+        if(mob == EntityType.ENDER_DRAGON) {
             min = 3;
             max = 8;
             tokens = 10;
         }
 
-        if(traits.getWeightedValue() == EntityType.WITHER) {
+        if(mob == EntityType.WITHER) {
             min = 3;
             max = 5;
+            tokens = 10;
+        }
+
+        if(mob == EntityType.WARDEN) {
+            min = 3;
+            max = 5;
+            tokens = 10;
+        }
+
+        if(mob == EntityType.ELDER_GUARDIAN) {
+            min = 3;
+            max = 5;
+            tokens = 10;
+        }
+
+        if(mob == EntityType.EVOKER) {
+            min = 4;
+            max = 6;
             tokens = 10;
         }
 
@@ -99,10 +135,11 @@ public class SlayerTask {
         }
 
         playerProfile.setPlayerVariable(PlayerVariables.SLAYER_TARGET_AMOUNT, randomNumber);
+        playerProfile.setPlayerVariable(PlayerVariables.SLAYER_ORIGINAL_TARGET_AMOUNT, randomNumber);
         playerProfile.setPlayerVariable(PlayerVariables.SLAYER_POINTS_REWARD, tokens);
         playerProfile.setSlayerMob(traits.getWeightedValue());
 
-        return traits.getWeightedValue();
+        return mob;
     }
 
 }

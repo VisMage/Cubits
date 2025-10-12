@@ -3,8 +3,10 @@ package me.josh.cubits.listeners;
 import me.josh.cubits.Main;
 import me.josh.cubits.cubitdata.CubitDatabase;
 import me.josh.cubits.items.ItemBase;
+import me.josh.cubits.menus.shopkeepers.FishermanShop;
 import me.josh.cubits.menus.shopkeepers.GeneralStoreMenu;
 import me.josh.cubits.menus.shopkeepers.SetDailyShopStock;
+import me.josh.cubits.menus.shopkeepers.SlayerShop;
 import me.josh.cubits.playerdata.MiniGameToken;
 import me.josh.cubits.playerdata.PlayerProfile;
 import me.josh.cubits.playerdata.PlayerVariables;
@@ -58,6 +60,8 @@ public class ShopkeeperListener implements Listener {
             }
 
 
+            //Slayer Shop and Fishing shop are not directly opened with right-clicking a villager.
+
 
         // End of checking which villager was right-clicked
         }
@@ -75,6 +79,10 @@ public class ShopkeeperListener implements Listener {
             tempShopName = "Treat Shop";
         }else if (e.getView().getTitle().startsWith("Desert Trader")){
             tempShopName = "Desert Trader";
+        }else if (e.getView().getTitle().startsWith("Slayer Shop")){
+            tempShopName = "Slayer Shop";
+        }else if (e.getView().getTitle().startsWith("Fisherman Shop")){
+            tempShopName = "Fisherman Shop";
         }else{
             return;
         }
@@ -130,6 +138,12 @@ public class ShopkeeperListener implements Listener {
             }else if(tempShopName.equals("Desert Trader")){
                 playerProfile.addPlayerVariables(PlayerVariables.FAVOR_DESERT_TRADER, 1);
                 GeneralStoreMenu.OpenTreatStore(plugin, p, "Desert Trader", SetDailyShopStock.desert_store_Item1, SetDailyShopStock.desert_store_Item2, SetDailyShopStock.desert_store_Item3, SetDailyShopStock.desert_store_Item4, SetDailyShopStock.desert_store_Item5, playerProfile.getPlayerVariables().get(PlayerVariables.FAVOR_DESERT_TRADER));
+            }else if(tempShopName.equals("Slayer Shop")){
+                playerProfile.addPlayerVariables(PlayerVariables.FAVOR_SLAYER_SHOP, 1);
+                SlayerShop.OpenSlayerStore(plugin, p, "Slayer Shop", SetDailyShopStock.slayer_store_Item1, SetDailyShopStock.slayer_store_Item2, SetDailyShopStock.slayer_store_Item3, playerProfile.getPlayerVariables().get(PlayerVariables.FAVOR_SLAYER_SHOP));
+            }else if(tempShopName.equals("Fisherman Shop")){
+                playerProfile.addPlayerVariables(PlayerVariables.FAVOR_SLAYER_SHOP, 1);
+                FishermanShop.OpenFishermanShop(plugin, p, "Fisherman Shop", SetDailyShopStock.fishing_store_Item1, SetDailyShopStock.fishing_store_Item2, SetDailyShopStock.fishing_store_Item3, playerProfile.getPlayerVariables().get(PlayerVariables.FAVOR_FISHERMAN));
             }else{
                 return;
             }
@@ -146,7 +160,7 @@ public class ShopkeeperListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(final InventoryDragEvent e) {
-        if (e.getView().getTitle().equals("Treat Shop") || e.getView().getTitle().equals("Desert Trader")) {
+        if (e.getView().getTitle().equals("Treat Shop") || e.getView().getTitle().equals("Desert Trader") || e.getView().getTitle().equals("Slayer Shop") || e.getView().getTitle().equals("Fisherman Shop")) {
             e.setCancelled(true);
         }
     }

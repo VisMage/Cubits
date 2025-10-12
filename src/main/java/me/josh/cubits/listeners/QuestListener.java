@@ -28,17 +28,38 @@ public class QuestListener implements Listener {
             final Player player = e.getEntity().getKiller();
             PlayerProfile playerProfile = plugin.getPlayerProfileManager().getProfileOf(player.getUniqueId());
 
-            if (killer instanceof Player){
-                EntityType slayerMob = playerProfile.getSlayerMob();
-                EntityType killedMob = entity.getType();
-                if(playerProfile.getSlayerMob() != null) {
-                if (killedMob == slayerMob){
-                    SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
-                    playerProfile.addPlayerVariables(PlayerVariables.SLAYER_AMOUNT, 1);
-                }
-            }
-            }
+            EntityType slayerMob = playerProfile.getSlayerMob();
+            EntityType killedMob = entity.getType();
 
+            if (killer instanceof Player){
+                if(playerProfile.getSlayerMob() == EntityType.EVOKER) {
+                    if (killedMob == EntityType.ENDER_DRAGON || killedMob == EntityType.WITHER || killedMob == EntityType.ELDER_GUARDIAN || killedMob == EntityType.EVOKER || killedMob == EntityType.WARDEN && playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_TARGET_AMOUNT ) > playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_AMOUNT)){
+                        SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
+                        playerProfile.addPlayerVariables(PlayerVariables.SLAYER_AMOUNT, 1);
+                        return;
+                    }
+                }
+
+                if(playerProfile.getSlayerMob() == EntityType.SPIDER) {
+                    if (killedMob == EntityType.SPIDER || killedMob == EntityType.CAVE_SPIDER && playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_SPIDER_SQUASHER) == 1 && playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_TARGET_AMOUNT ) > playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_AMOUNT)){
+                        SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
+                        playerProfile.addPlayerVariables(PlayerVariables.SLAYER_AMOUNT, 1);
+                        return;
+                    }
+                }
+
+                if(playerProfile.getSlayerMob() != null) {
+                    if (killedMob == slayerMob && playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_TARGET_AMOUNT ) > playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_AMOUNT)){
+                        SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
+                        playerProfile.addPlayerVariables(PlayerVariables.SLAYER_AMOUNT, 1);
+                    }
+                }
+
+
+
+
+
+            }
             // End of Mobs Killed Event
         }
     }

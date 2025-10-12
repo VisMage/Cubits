@@ -57,6 +57,7 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BagCatigoryListener(this), this);
         getServer().getPluginManager().registerEvents(new BagTreatListener(this), this);
         getServer().getPluginManager().registerEvents(new BagDummyListener(this), this);
+        getServer().getPluginManager().registerEvents(new BagTrinketListener(this), this);
         getServer().getPluginManager().registerEvents(new BagCosmeticListener(this), this);
         getServer().getPluginManager().registerEvents(new BagCookingListener(this), this);
         getServer().getPluginManager().registerEvents(new SummeryListener(this), this);
@@ -74,6 +75,9 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new QuestListener(this), this);
         getServer().getPluginManager().registerEvents(new QuestMenuListener(this), this);
         getServer().getPluginManager().registerEvents(new SlayerMenuListener(this), this);
+        getServer().getPluginManager().registerEvents(new SlayerUpgradeMenuListener(this), this);
+        getServer().getPluginManager().registerEvents(new FishermanMenuListener(this), this);
+        getServer().getPluginManager().registerEvents(new FishingUpgradeMenuListener(this), this);
 
         // The task to run every second
         new WolfTeleportRadius(this).runTaskTimer(this, 0L, 20L);

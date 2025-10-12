@@ -73,34 +73,39 @@ public class SummeryCommand implements SubCommand{
         pickup.setItemMeta(pickupMeta);
 
         ItemStack combatstyle = new ItemStack(Material.RED_DYE);
-        ItemMeta combatstyleMeta = pickup.getItemMeta();
+        ItemMeta combatstyleMeta = combatstyle.getItemMeta();
         combatstyleMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Combat Style: Offence");
         combatstyle.setItemMeta(combatstyleMeta);
 
         ItemStack rename = new ItemStack(Material.NAME_TAG);
-        ItemMeta renamepMeta = pickup.getItemMeta();
+        ItemMeta renamepMeta = rename.getItemMeta();
         renamepMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Rename");
         rename.setItemMeta(renamepMeta);
 
         ItemStack info = new ItemStack(Material.PAPER);
-        ItemMeta infoMeta = pickup.getItemMeta();
+        ItemMeta infoMeta = info.getItemMeta();
         infoMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Cubit Info");
         info.setItemMeta(infoMeta);
 
         ItemStack comingsoon1 = new ItemStack(Material.OAK_BUTTON);
-        ItemMeta comingsoon1Meta = pickup.getItemMeta();
+        ItemMeta comingsoon1Meta = comingsoon1.getItemMeta();
         comingsoon1Meta.setDisplayName(ChatColor.LIGHT_PURPLE + "Coming Soon");
         comingsoon1.setItemMeta(comingsoon1Meta);
 
         ItemStack password = new ItemStack(Material.OXEYE_DAISY);
-        ItemMeta passwordMeta = pickup.getItemMeta();
+        ItemMeta passwordMeta = password.getItemMeta();
         passwordMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Password");
         password.setItemMeta(passwordMeta);
 
         ItemStack ribbons = new ItemStack(Material.SPECTRAL_ARROW);
-        ItemMeta ribbonsMeta = pickup.getItemMeta();
+        ItemMeta ribbonsMeta = ribbons.getItemMeta();
         ribbonsMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Ribbons");
         ribbons.setItemMeta(ribbonsMeta);
+
+        ItemStack unequipItem = new ItemStack(Material.STRING);
+        ItemMeta unequipItemMeta = unequipItem.getItemMeta();
+        unequipItemMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Unequip Item");
+        unequipItem.setItemMeta(unequipItemMeta);
 
 
 
@@ -125,7 +130,7 @@ public class SummeryCommand implements SubCommand{
         menu.setItem(14, password);
         menu.setItem(15, comingsoon1);
 
-        menu.setItem(21, comingsoon1);
+        menu.setItem(21, unequipItem);
         menu.setItem(22, comingsoon1);
         menu.setItem(23, comingsoon1);
 

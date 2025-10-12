@@ -10,6 +10,7 @@ public enum MiniGameToken {
     COINS,
     GEMS,
     SLAYER_TOKENS,
+    FISHING_TOKENS,
     RED_IRIS,
     BLUE_IRIS,
     YELLOW_IRIS,

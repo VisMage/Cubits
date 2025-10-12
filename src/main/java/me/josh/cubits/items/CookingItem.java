@@ -92,6 +92,8 @@ public class CookingItem extends ItemBase{
     public String getIngredients() {
         return ingredients;
     }
+
+    public void OnUnequip(Cubit cubit, PlayerProfile playerProfile){}
 }
 
 

@@ -16,4 +16,6 @@ public class DummyItem extends ItemBase{
     public void OnConsume(Cubit cubit, PlayerProfile playerProfile) {
         System.out.println("Error - Dummy Item was consumed!");
     }
+
+    public void OnUnequip(Cubit cubit, PlayerProfile playerProfile){}
 }

@@ -62,7 +62,7 @@ public class BagCatigoryListener implements Listener {
             PlayerInventoryMenu.OpenBagByItemType(plugin, p, ItemType.DUMMY_ITEM, 1);
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10103) {
             SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
-            p.sendMessage("Trinkets coming soon!");
+            PlayerInventoryMenu.OpenBagByItemType(plugin, p, ItemType.HELD_ITEM, 1);
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10104) {
             SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             PlayerInventoryMenu.OpenBagByItemType(plugin, p, ItemType.COSMETIC_ITEM, 1);

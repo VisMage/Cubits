@@ -459,10 +459,10 @@ public class CreateCubitHead {
         lore.add(ChatColor.MAGIC + "VOID:");
         lore.add(ChatColor.DARK_PURPLE + String.valueOf(currentMys) + " " + progressMysBar + " " + (gradeLetter_MYSTIC) + ChatColor.GRAY + " (" + totalMys + ")");
 
+        lore.add(ChatColor.GRAY + "Item: " + cubit.getHeldItem().getName());
+        lore.add(ChatColor.GRAY + "Trait: " + String.valueOf(cubit.getTrait()));
         lore.add(ChatColor.GRAY + "Rebirth: " + String.valueOf(cubit.getRebirth()));
         lore.add(ChatColor.GRAY + "OG Owner: " + String.valueOf(cubit.getOriginalOwnerName()) + " #" + cubit.getSerialNumber());
-
-        lore.add(ChatColor.GRAY + "Trait: " + String.valueOf(cubit.getTrait()));
 
         meta.setLore(lore);
         petItem.setItemMeta(meta);

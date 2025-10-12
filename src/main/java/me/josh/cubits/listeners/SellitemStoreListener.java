@@ -3,6 +3,7 @@ package me.josh.cubits.listeners;
 import me.josh.cubits.Main;
 import me.josh.cubits.cubitdata.CubitDatabase;
 import me.josh.cubits.items.ItemBase;
+import me.josh.cubits.menus.shopkeepers.BobaShop;
 import me.josh.cubits.menus.shopkeepers.SellItemStore;
 import me.josh.cubits.playerdata.MiniGameToken;
 import me.josh.cubits.playerdata.PlayerProfile;
@@ -12,6 +13,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
+import org.bukkit.entity.Frog;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
@@ -45,10 +47,27 @@ public class SellitemStoreListener implements Listener {
                 return;
             }
 
+            // End of checking which villager was right-clicked
+        }
 
+        if(e.getRightClicked() instanceof Frog) {
+            Frog v = (Frog) e.getRightClicked();
+
+            // Open the correct shop menu
+            if (v.getCustomName() != null && v.getCustomName().equalsIgnoreCase("Boba")){
+                BobaShop.OpenBobaShop(plugin, p);
+                SoundUtil.PlaySoundAll(Sound.ENTITY_FROG_AMBIENT, 1, 1);
+                p.sendMessage(ChatColor.LIGHT_PURPLE + "Boba: " + ChatColor.WHITE + "Ribbit ribbit!");
+                e.setCancelled(true);
+                return;
+            }
 
             // End of checking which villager was right-clicked
         }
+
+
+
+
     }
 
 
@@ -57,8 +76,13 @@ public class SellitemStoreListener implements Listener {
     @EventHandler
     public void onMenuClick(InventoryClickEvent e) {
 
-        if (!e.getView().getTitle().startsWith("Sell Shop")) return;
+        if (!e.getView().getTitle().startsWith("Sell Shop") && !e.getView().getTitle().startsWith("Boba Shop")) return;
         if (e.getCurrentItem() == null) return;
+        int shopID = 1;
+
+        if(e.getView().getTitle().startsWith("Boba Shop")){
+            shopID = 2;
+        }
 
         e.setCancelled(true);
 
@@ -98,20 +122,35 @@ public class SellitemStoreListener implements Listener {
             money = playerProfile.getMiniGameTokens().get(MiniGameToken.COINS);
 
             if(!playerProfile.containsCubitItem(usedItem)){
-                SoundUtil.PlaySoundAll(Sound.ENTITY_VILLAGER_NO, 1, 1);
+                if(shopID == 2){
+                    SoundUtil.PlaySoundAll(Sound.ENTITY_FROG_DEATH, 1, 1);
+                }else{
+                    SoundUtil.PlaySoundAll(Sound.ENTITY_VILLAGER_NO, 1, 1);
+                }
                 return;
             }
 
             if(playerProfile.getCubitItemByIdentifier(usedItem.getIdentifier()).getAmount() == 0){
-                SoundUtil.PlaySoundAll(Sound.ENTITY_VILLAGER_NO, 1, 1);
+                if(shopID == 2){
+                    SoundUtil.PlaySoundAll(Sound.ENTITY_FROG_DEATH, 1, 1);
+                }else{
+                    SoundUtil.PlaySoundAll(Sound.ENTITY_VILLAGER_NO, 1, 1);
+                }
                 return;
             }
 
-            SoundUtil.PlaySoundAll(Sound.ENTITY_VILLAGER_TRADE, 1, 1);
+            if(shopID == 2){
+                SoundUtil.PlaySoundAll(Sound.ENTITY_FROG_EAT, 1, 1);
+                playerProfile.addPlayerVariables(PlayerVariables.FAVOR_BOBA, 1);
+                BobaShop.OpenBobaShop(plugin, p);
+            }else{
+                SoundUtil.PlaySoundAll(Sound.ENTITY_VILLAGER_TRADE, 1, 1);
+                playerProfile.addPlayerVariables(PlayerVariables.FAVOR_SELLSHOP, 1);
+                SellItemStore.OpenSellItemStore(plugin, p);
+            }
+
             playerProfile.addMiniGameTokens(MiniGameToken.COINS, usedItem.getCost());
             playerProfile.removeCubitItem(usedItem, 1);
-            SellItemStore.OpenSellItemStore(plugin, p);
-            playerProfile.addPlayerVariables(PlayerVariables.FAVOR_SELLSHOP, 1);
             return;
 
         } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
@@ -131,7 +170,7 @@ public class SellitemStoreListener implements Listener {
     // Cancel dragging in our inventory
     @EventHandler
     public void onInventoryClick(final InventoryDragEvent e) {
-        if (e.getView().getTitle().equals("Sell Shop")) {
+        if (e.getView().getTitle().equals("Sell Shop") || e.getView().getTitle().equals("Boba Shop")) {
             e.setCancelled(true);
         }
     }

@@ -348,19 +348,19 @@ public abstract class ItemBase {
 
     //ALCHEMY ITEMS
     public static final DummyItem ARIA_POWDER = new DummyItem("Aria Powder", "ARIA_POWDER",
-            "A high-quality ingredient used in cooking.", 999,
+            "A high-quality ingredient used in alchemy.", 999,
             "Harvesting Wheat 1/200", 10);
     public static final DummyItem ARIA_FLOWER = new DummyItem("Aria Flower", "ARIA_FLOWER",
-            "A high-quality ingredient used in cooking.", 999,
+            "A high-quality ingredient used in alchemy.", 999,
             "???", 10);
     public static final DummyItem MAHNA_PETALS = new DummyItem("Mahna Petals", "MAHNA_PETALS",
-            "A high-quality ingredient used in cooking.", 999,
+            "A high-quality ingredient used in alchemy.", 999,
             "???", 10);
     public static final DummyItem ROVITA = new DummyItem("Rovita", "ROVITA",
-            "A high-quality ingredient used in cooking.", 999,
+            "A high-quality ingredient used in alchemy.", 999,
             "???", 10);
     public static final DummyItem BELLETHORN = new DummyItem("Bellethorn", "BELLETHORN",
-            "A high-quality ingredient used in cooking.", 999,
+            "A high-quality ingredient used in alchemy.", 999,
             "???", 10);
 
 
@@ -421,9 +421,54 @@ public abstract class ItemBase {
 
 
     // POTIONS
-    public static final PotionItem LUCKY_POTION_1 = new PotionItem("Lucky Potion I", "LUCKY_POTION_1",
-            "Boosts luck for finding Cubits and Cubit items.", 999,
-            "???", 10);
+    public static final PotionItem LUCKY_POTION = new PotionItem("Lucky Potion", "LUCKY_POTION",
+            "Increases odds of finding Cubits.", 999, 30,
+            "Alchemy", 100, "Pure Honey x5, Wheat 8, Aria Powder x1",
+            ItemBase.PURE_HONEY, ItemBase.WHEAT, ItemBase.ARIA_POWDER, ItemBase.DUMMY, ItemBase.DUMMY, 5, 8, 1, 0, 0);
+    public static final PotionItem BOUNTIFUL_POTION = new PotionItem("Bountiful Potion", "BOUNTIFUL_POTION",
+            "Chance for double item gains.", 999, 30,
+            "Alchemy", 100, "Pure Honey x5, Wheat 8, Aria Powder x1",
+            ItemBase.PURE_HONEY, ItemBase.WHEAT, ItemBase.ARIA_POWDER, ItemBase.DUMMY, ItemBase.DUMMY, 5, 8, 1, 0, 0);
+    public static final PotionItem MIDUS_POTION = new PotionItem("Midus Potion", "MIDUS_POTION",
+            "Chance to find coins passively.", 999, 30,
+            "Alchemy", 100, "Pure Honey x5, Wheat 8, Aria Powder x1",
+            ItemBase.PURE_HONEY, ItemBase.WHEAT, ItemBase.ARIA_POWDER, ItemBase.DUMMY, ItemBase.DUMMY, 5, 8, 1, 0, 0);
+    public static final PotionItem CHEF_POTION = new PotionItem("Chef Potion", "CHEF_POTION",
+            "Chance to cook two items at once.", 999, 30,
+            "Alchemy", 100, "Pure Honey x5, Wheat 8, Aria Powder x1",
+            ItemBase.PURE_HONEY, ItemBase.WHEAT, ItemBase.ARIA_POWDER, ItemBase.DUMMY, ItemBase.DUMMY, 5, 8, 1, 0, 0);
+    public static final PotionItem EXPERIENCE_POTION = new PotionItem("Experience Potion", "EXPERIENCE_POTION",
+            "Chance to gain extra exp from treats.", 999, 30,
+            "Alchemy", 100, "Pure Honey x5, Wheat 8, Aria Powder x1",
+            ItemBase.PURE_HONEY, ItemBase.WHEAT, ItemBase.ARIA_POWDER, ItemBase.DUMMY, ItemBase.DUMMY, 5, 8, 1, 0, 0);
+    public static final PotionItem TREASURE_POTION = new PotionItem("Treasure Potion", "TREASURE_POTION",
+            "Chance to find coins, gems, and tokens passively.", 999, 30,
+            "Alchemy", 100, "Pure Honey x5, Wheat 8, Aria Powder x1",
+            ItemBase.PURE_HONEY, ItemBase.WHEAT, ItemBase.ARIA_POWDER, ItemBase.DUMMY, ItemBase.DUMMY, 5, 8, 1, 0, 0);
+    public static final PotionItem SHINY_POTION = new PotionItem("Shiny Potion", "SHINY_POTION",
+            "Increased chance to find shiny Cubits.", 999, 30,
+            "Alchemy", 100, "Pure Honey x5, Wheat 8, Aria Powder x1",
+            ItemBase.PURE_HONEY, ItemBase.WHEAT, ItemBase.ARIA_POWDER, ItemBase.DUMMY, ItemBase.DUMMY, 5, 8, 1, 0, 0);
+    public static final PotionItem SLAYER_POTION = new PotionItem("Slayer Potion", "SLAYER_POTION",
+            "Encounter harder slayer monsters, with greater rewards.", 999, 30,
+            "Alchemy", 100, "Pure Honey x5, Wheat 8, Aria Powder x1",
+            ItemBase.PURE_HONEY, ItemBase.WHEAT, ItemBase.ARIA_POWDER, ItemBase.DUMMY, ItemBase.DUMMY, 5, 8, 1, 0, 0);
+    public static final PotionItem CRUSADER_POTION = new PotionItem("Crusader Potion", "CRUSADER_POTION",
+            "Chance for slayer kills to count twice.", 999, 30,
+            "Alchemy", 100, "Pure Honey x5, Wheat 8, Aria Powder x1",
+            ItemBase.PURE_HONEY, ItemBase.WHEAT, ItemBase.ARIA_POWDER, ItemBase.DUMMY, ItemBase.DUMMY, 5, 8, 1, 0, 0);
+    public static final PotionItem PROSPECTOR_POTION = new PotionItem("Prospector Potion", "PROSPECTOR_POTION",
+            "Chance to obtain Ore Candies from mining ores.", 999, 30,
+            "Alchemy", 100, "Pure Honey x5, Wheat 8, Aria Powder x1",
+            ItemBase.PURE_HONEY, ItemBase.WHEAT, ItemBase.ARIA_POWDER, ItemBase.DUMMY, ItemBase.DUMMY, 5, 8, 1, 0, 0);
+    public static final PotionItem CHAOS_POTION = new PotionItem("Chaos Potion", "CHAOS_POTION",
+            "Randomly redistribute the equipped Cubit's stats.", 999, 30,
+            "Alchemy", 100, "Pure Honey x5, Wheat 8, Aria Powder x1",
+            ItemBase.PURE_HONEY, ItemBase.WHEAT, ItemBase.ARIA_POWDER, ItemBase.DUMMY, ItemBase.DUMMY, 5, 8, 1, 0, 0);
+    public static final PotionItem ANGLER_POTION = new PotionItem("Angler Potion", "ANGLER_POTION",
+            "Chance to obtain extra loot and exp from fishing.", 999, 30,
+            "Alchemy", 100, "Pure Honey x5, Wheat 8, Aria Powder x1",
+            ItemBase.PURE_HONEY, ItemBase.WHEAT, ItemBase.ARIA_POWDER, ItemBase.DUMMY, ItemBase.DUMMY, 5, 8, 1, 0, 0);
 
 
 

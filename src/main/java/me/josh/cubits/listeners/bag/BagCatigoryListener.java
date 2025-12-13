@@ -3,6 +3,7 @@ package me.josh.cubits.listeners.bag;
 import me.josh.cubits.Main;
 import me.josh.cubits.commands.MenuCommand;
 import me.josh.cubits.menus.BagCookingMenu;
+import me.josh.cubits.menus.BagPotionMenu;
 import me.josh.cubits.menus.PlayerInventoryMenu;
 import me.josh.cubits.items.ItemType;
 import me.josh.cubits.utils.SoundUtil;
@@ -68,7 +69,7 @@ public class BagCatigoryListener implements Listener {
             PlayerInventoryMenu.OpenBagByItemType(plugin, p, ItemType.COSMETIC_ITEM, 1);
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10105) {
             SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
-            p.sendMessage("Potions coming soon!");
+            BagPotionMenu.OpenBagPotion(plugin, p, 1);
         } else if (e.getCurrentItem().getType().equals(Material.BARRIER)) {
             SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             new MenuCommand().executeCommand(plugin, p, new String[]{"0"});

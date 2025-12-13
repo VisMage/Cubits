@@ -78,6 +78,9 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new SlayerUpgradeMenuListener(this), this);
         getServer().getPluginManager().registerEvents(new FishermanMenuListener(this), this);
         getServer().getPluginManager().registerEvents(new FishingUpgradeMenuListener(this), this);
+        getServer().getPluginManager().registerEvents(new BagPotionListener(this), this);
+        getServer().getPluginManager().registerEvents(new PotionListener(this), this);
+
 
         // The task to run every second
         new WolfTeleportRadius(this).runTaskTimer(this, 0L, 20L);

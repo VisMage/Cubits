@@ -260,7 +260,20 @@ public class CubitDatabase {
 
         //Potions
         PotionItemDatabase = new ArrayList<>();
-        PotionItemDatabase.add(ItemBase.LUCKY_POTION_1);
+        PotionItemDatabase.add(ItemBase.LUCKY_POTION);
+        PotionItemDatabase.add(ItemBase.BOUNTIFUL_POTION);
+        PotionItemDatabase.add(ItemBase.MIDUS_POTION);
+        PotionItemDatabase.add(ItemBase.CHEF_POTION);
+        PotionItemDatabase.add(ItemBase.EXPERIENCE_POTION);
+        PotionItemDatabase.add(ItemBase.TREASURE_POTION);
+        PotionItemDatabase.add(ItemBase.SHINY_POTION);
+        PotionItemDatabase.add(ItemBase.SLAYER_POTION);
+        PotionItemDatabase.add(ItemBase.CRUSADER_POTION);
+        PotionItemDatabase.add(ItemBase.PROSPECTOR_POTION);
+        PotionItemDatabase.add(ItemBase.CHAOS_POTION);
+        PotionItemDatabase.add(ItemBase.ANGLER_POTION);
+
+
 
 
         //Cooking Items

@@ -2,6 +2,7 @@ package me.josh.cubits.menus;
 
 import me.josh.cubits.Main;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.playerdata.PlayerUpgrades;
 import me.josh.cubits.playerdata.PlayerVariables;
 import me.josh.cubits.utils.WeightedEntry;
 import me.josh.cubits.utils.WeightedList;
@@ -20,6 +21,26 @@ public class SlayerTask {
         DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.ZOMBIE, 5));
         DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.SKELETON, 5));
         DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.SPIDER, 5));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.CAVE_SPIDER, 5));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.HUSK, 6));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.STRAY, 6));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.BOGGED, 6));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.BLAZE, 5));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.BREEZE, 4));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.ZOMBIE_VILLAGER, 2));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.PIGLIN, 5));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.ZOMBIFIED_PIGLIN, 5));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.PIGLIN_BRUTE, 2));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.WITHER_SKELETON, 2));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.PILLAGER, 5));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.WITCH, 5));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.RAVAGER, 2));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.ENDERMAN, 2));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.GHAST, 2));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.DROWNED, 5));
+        DEFAULT_TASKS.getWeightedEntries().add(new WeightedEntry<>(EntityType.GUARDIAN, 5));
+
+
     }
 
     private SlayerTask(){}
@@ -34,23 +55,23 @@ public class SlayerTask {
             traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.HUSK, 15));
         }
 
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_DRAGON) == 1){
+        if(playerProfile.getUpgrades().get(PlayerUpgrades.SLAYER_UPGRADE_DRAGON)){
             traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.ENDER_DRAGON, 5));
         }
 
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_WITHER) == 1){
+        if(playerProfile.getUpgrades().get(PlayerUpgrades.SLAYER_UPGRADE_WITHER)){
             traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.WITHER, 5));
         }
 
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_ELDERGUARDIAN) == 1){
+        if(playerProfile.getUpgrades().get(PlayerUpgrades.SLAYER_UPGRADE_ELDERGUARDIAN)){
             traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.ELDER_GUARDIAN, 5));
         }
 
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_WARDEN) == 1){
+        if(playerProfile.getUpgrades().get(PlayerUpgrades.SLAYER_UPGRADE_WARDEN)){
             traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.WARDEN, 5));
         }
 
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_BOSSRUSH) == 1){
+        if(playerProfile.getUpgrades().get(PlayerUpgrades.SLAYER_UPGRADE_BOSSRUSH)){
             traits.getWeightedEntries().add(new WeightedEntry<>(EntityType.EVOKER, 5));
         }
 
@@ -120,6 +141,42 @@ public class SlayerTask {
             min = 4;
             max = 6;
             tokens = 10;
+        }
+
+        if(mob == EntityType.RAVAGER) {
+            min = 2;
+            max = 3;
+            tokens = 6;
+        }
+
+        if(mob == EntityType.BREEZE) {
+            min = 6;
+            max = 8;
+            tokens = 5;
+        }
+
+        if(mob == EntityType.PIGLIN_BRUTE) {
+            min = 6;
+            max = 8;
+            tokens = 6;
+        }
+
+        if(mob == EntityType.GHAST) {
+            min = 3;
+            max = 8;
+            tokens = 5;
+        }
+
+        if(mob == EntityType.ZOMBIE_VILLAGER) {
+            min = 3;
+            max = 4;
+            tokens = 4;
+        }
+
+        if(mob == EntityType.CAVE_SPIDER) {
+            min = 21;
+            max = 28;
+            tokens = 4;
         }
 
 

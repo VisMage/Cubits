@@ -6,6 +6,7 @@ import me.josh.cubits.cubitdata.GlobalCubitStatistics;
 import me.josh.cubits.cubitentity.Animator;
 import me.josh.cubits.cubitentity.CancelCubitGrieve;
 import me.josh.cubits.cubitentity.WolfTeleportRadius;
+import me.josh.cubits.gamemanager.GameManager;
 import me.josh.cubits.items.ItemBase;
 import me.josh.cubits.listeners.*;
 import me.josh.cubits.listeners.bag.*;
@@ -13,85 +14,33 @@ import me.josh.cubits.listeners.index.*;
 import me.josh.cubits.menus.shopkeepers.SetDailyShopStock;
 import me.josh.cubits.playerdata.PlayerProfile;
 import me.josh.cubits.playerdata.PlayerProfileManager;
+import me.josh.cubits.shinycharm.ShinyCharmAnimator;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.IOException;
+import java.nio.file.Files;
+
 public class Main extends JavaPlugin {
-    private PlayerProfileManager playerProfileManager;
-    private GlobalCubitStatistics globalCubitStatistic;
     static Main instance;
+    private GameManager gameManager;
+    private ShinyCharmAnimator shinyCharmAnimator;
+    public int achievementRankMax = 4;
+    public int shinyCharmTotal = 50;
 
     @Override
     public void onEnable() {
         instance = this;
-
-//        PlayerProfileSerializer playerProfileSerializer = new PlayerProfileSerializer(this);
-//        playerProfileManager = playerProfileSerializer.deserialize();
-
-        saveDefaultConfig();
-        CubitDatabase.init();
-
-        playerProfileManager = new PlayerProfileManager(this);
-        globalCubitStatistic = new GlobalCubitStatistics();
+        createDataFolder();
+        gameManager = new GameManager(this);
+        gameManager.init();
 
         // Setting the command executor class for the "cb" command
         getCommand("cb").setExecutor(new CommandManager(this));
 
-        // Listeners
-        getServer().getPluginManager().registerEvents(new MenuListener(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerStatMenuListener(this), this);
-        getServer().getPluginManager().registerEvents(new PetMenuListener(this), this);
-        getServer().getPluginManager().registerEvents(new CubitListener(this), this);
-        getServer().getPluginManager().registerEvents(new FindCubitListener(this), this);
-        getServer().getPluginManager().registerEvents(new FindTreatListener(this), this);
-        getServer().getPluginManager().registerEvents(new SkillPointGainListener(this), this);
-        getServer().getPluginManager().registerEvents(new StarterListener(this), this);
-        getServer().getPluginManager().registerEvents(new CancelCubitGrieve(this), this);
-        getServer().getPluginManager().registerEvents(new TeleportOnWorldSwitch(this), this);
-        getServer().getPluginManager().registerEvents(new UnequipOnLeave(this), this);
-        getServer().getPluginManager().registerEvents(new ShopkeeperListener(this), this);
-        getServer().getPluginManager().registerEvents(new SellitemStoreListener(this), this);
-        getServer().getPluginManager().registerEvents(new LootboxMenuListener(this), this);
-        getServer().getPluginManager().registerEvents(new ChunkUnloadListener(this), this);
-        getServer().getPluginManager().registerEvents(new BagCatigoryListener(this), this);
-        getServer().getPluginManager().registerEvents(new BagTreatListener(this), this);
-        getServer().getPluginManager().registerEvents(new BagDummyListener(this), this);
-        getServer().getPluginManager().registerEvents(new BagTrinketListener(this), this);
-        getServer().getPluginManager().registerEvents(new BagCosmeticListener(this), this);
-        getServer().getPluginManager().registerEvents(new BagCookingListener(this), this);
-        getServer().getPluginManager().registerEvents(new SummeryListener(this), this);
-        getServer().getPluginManager().registerEvents(new RightClickCubitListener(this), this);
-        getServer().getPluginManager().registerEvents(new IndexMenuListener(this), this);
-        getServer().getPluginManager().registerEvents(new IndexMenuTreatsListener(this), this);
-        getServer().getPluginManager().registerEvents(new IndexMenuCosmeticListener(this), this);
-        getServer().getPluginManager().registerEvents(new IndexMenuDummyListener(this), this);
-        getServer().getPluginManager().registerEvents(new IndexMenuCubitListener(this), this);
-        getServer().getPluginManager().registerEvents(new RebirthMenuListener(this), this);
-        getServer().getPluginManager().registerEvents(new TreasureChestListener(this), this);
-        getServer().getPluginManager().registerEvents(new FindTokenListener(this), this);
-        getServer().getPluginManager().registerEvents(new FindTreasureChestListener(this), this);
-        getServer().getPluginManager().registerEvents(new FishingListener(this), this);
-        getServer().getPluginManager().registerEvents(new QuestListener(this), this);
-        getServer().getPluginManager().registerEvents(new QuestMenuListener(this), this);
-        getServer().getPluginManager().registerEvents(new SlayerMenuListener(this), this);
-        getServer().getPluginManager().registerEvents(new SlayerUpgradeMenuListener(this), this);
-        getServer().getPluginManager().registerEvents(new FishermanMenuListener(this), this);
-        getServer().getPluginManager().registerEvents(new FishingUpgradeMenuListener(this), this);
-        getServer().getPluginManager().registerEvents(new BagPotionListener(this), this);
-        getServer().getPluginManager().registerEvents(new PotionListener(this), this);
-
-
-        // The task to run every second
-        new WolfTeleportRadius(this).runTaskTimer(this, 0L, 20L);
-
-        // Run animations
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> new Animator(this).runGlobalAnimation(), 0L, 2L);
-
-        // Shop Items
-        new SetDailyShopStock();
-
-
+        shinyCharmAnimator = new ShinyCharmAnimator(this);
+        shinyCharmAnimator.shinyOnEnable();
 
         // Enable Message
         System.out.println("================================");
@@ -101,20 +50,9 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-//        Serializer<PlayerProfileManager> playerProfileSerializer = playerProfileManager.serializer();
-//        playerProfileSerializer.serialize(playerProfileManager);
 
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            PlayerProfile playerProfile = playerProfileManager.getProfileOf(player.getUniqueId());
-            if (playerProfile == null){
-                continue;
-            }
-            if (!playerProfile.getActiveCubitEntity().isActive()){
-                continue;
-            }
-
-            playerProfile.getActiveCubitEntity().UnequipCubit();
-        }
+        getPlayerProfileManager().unequipCubitsOnDisable();
+        //gameManager.saveGameData(); // Disabled for now, crashes while testing since it's incomplete
 
         // Disable Message
         System.out.println("================================");
@@ -122,12 +60,23 @@ public class Main extends JavaPlugin {
         System.out.println("================================");
     }
 
+    private void createDataFolder() {
+        try {
+            if(!getDataFolder().exists())
+                Files.createDirectory(getDataFolder().toPath());
+        }
+        catch(IOException e) {
+            getLogger().severe("Data Folder could not be created");
+            e.printStackTrace();
+        }
+    }
+
     public PlayerProfileManager getPlayerProfileManager(){
-        return playerProfileManager;
+        return gameManager.getPlayerProfileManager();
     }
 
     public GlobalCubitStatistics getGlobalCubitStatistics(){
-        return globalCubitStatistic;
+        return gameManager.getGlobalCubitStatistic();
     }
 
     //Option for other classes to get the instance of the MainClass

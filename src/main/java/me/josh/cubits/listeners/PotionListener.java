@@ -2,6 +2,7 @@ package me.josh.cubits.listeners;
 
 import me.josh.cubits.Main;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.playerdata.PlayerUpgrades;
 import me.josh.cubits.playerdata.PlayerVariables;
 import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.Sound;
@@ -43,7 +44,7 @@ public class PotionListener implements Listener {
                 }
 
                 if(playerProfile.getSlayerMob() == EntityType.SPIDER) {
-                    if (killedMob == EntityType.SPIDER || killedMob == EntityType.CAVE_SPIDER && playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_SPIDER_SQUASHER) == 1 && playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_TARGET_AMOUNT ) > playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_AMOUNT)){
+                    if (killedMob == EntityType.SPIDER || killedMob == EntityType.CAVE_SPIDER && playerProfile.getUpgrades().get(PlayerUpgrades.SLAYER_UPGRADE_SPIDER_SQUASHER) && playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_TARGET_AMOUNT ) > playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_AMOUNT)){
                         SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                         //playerProfile.addPlayerVariables(PlayerVariables.SLAYER_AMOUNT, 1);
                         return;

@@ -21,6 +21,7 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Crops;
 
+import java.time.LocalDate;
 import java.util.Random;
 import java.util.UUID;
 
@@ -271,6 +272,25 @@ public class FindCubitListener implements Listener {
                 }else {
                 }
 
+            }
+        }
+
+
+        if(event.getCaught() instanceof Item){
+            Random r = new Random();
+            float chance = r.nextFloat();
+            Item item = (Item) event.getCaught();
+            if (item.getItemStack().getType() == Material.SALMON || item.getItemStack().getType() == Material.COD ||item.getItemStack().getType() == Material.PUFFERFISH) {
+                LocalDate today = LocalDate.now();
+                int dayOfYear = today.getDayOfYear();
+                if (dayOfYear >= 334 && dayOfYear <= 365) {
+                    Random r2 = new Random();
+                    float chance2 = r2.nextFloat();
+                    if (chance2 <= 1/3000f) {
+                        plugin.getPlayerProfileManager().getProfileOf(player.getUniqueId()).addCubit(CubitBase.AXIE_JOLLY);
+                    }else {
+                    }
+                }
             }
         }
 
@@ -544,11 +564,6 @@ public class FindCubitListener implements Listener {
             }
 
 
-
-
-
-
-
             if (killer instanceof Player){
                 if (entity instanceof Squid){
                     Random r = new Random();
@@ -575,9 +590,6 @@ public class FindCubitListener implements Listener {
 
                 }
             }
-
-
-
 
 
             if (killer instanceof Player){
@@ -660,6 +672,65 @@ public class FindCubitListener implements Listener {
                     }else {}
                 }
             }
+
+
+
+
+            // EVENT CUBIT DROPS
+
+            if (killer instanceof Player){
+                if (entity instanceof Spider){
+                    LocalDate today = LocalDate.now();
+                    int dayOfYear = today.getDayOfYear();
+                    if (dayOfYear >= 334 && dayOfYear <= 365) {
+                        Random r = new Random();
+                        float chance = r.nextFloat();
+                        if (chance <= 1/3000f) {
+                            plugin.getPlayerProfileManager().getProfileOf(player.getUniqueId()).addCubit(CubitBase.FROSTY_SPIDER);
+                        }else {
+                        }
+                    }
+
+                }
+            }
+
+            if (killer instanceof Player){
+                if (entity instanceof Blaze){
+                    LocalDate today = LocalDate.now();
+                    int dayOfYear = today.getDayOfYear();
+                    if (dayOfYear >= 334 && dayOfYear <= 365) {
+                        Random r = new Random();
+                        float chance = r.nextFloat();
+                        if (chance <= 1/2000f) {
+                            plugin.getPlayerProfileManager().getProfileOf(player.getUniqueId()).addCubit(CubitBase.FROSTY_BLAZE);
+                        }else {
+                        }
+                    }
+
+                }
+            }
+
+            if (killer instanceof Player){
+                if (entity instanceof Slime){
+                    LocalDate today = LocalDate.now();
+                    int dayOfYear = today.getDayOfYear();
+                    if (dayOfYear >= 334 && dayOfYear <= 365) {
+                        Random r = new Random();
+                        float chance = r.nextFloat();
+                        if (chance <= 1/3000f) {
+                            plugin.getPlayerProfileManager().getProfileOf(player.getUniqueId()).addCubit(CubitBase.SLIME_JOLLY);
+                        }else {
+                        }
+                    }
+
+                }
+            }
+
+
+
+
+
+
 
             // End of Mobs Killed Event
         }
@@ -761,6 +832,22 @@ public class FindCubitListener implements Listener {
                 }
             }
         }
+
+
+        if (animal instanceof Bee){
+            LocalDate today = LocalDate.now();
+            int dayOfYear = today.getDayOfYear();
+            if (dayOfYear >= 334 && dayOfYear <= 365) {
+                Random r2 = new Random();
+                float chance2 = r2.nextFloat();
+                if (chance2 <= 1/500f) {
+                    plugin.getPlayerProfileManager().getProfileOf(player.getUniqueId()).addCubit(CubitBase.FROSTY_BUMBLE);
+                }else {
+                }
+            }
+        }
+
+
 
 
         if (animal instanceof Bee && ((Player) player).getInventory().getItemInMainHand().getType() == Material.PINK_PETALS || ((Player) player).getInventory().getItemInOffHand().getType() == Material.PINK_PETALS) {

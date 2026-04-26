@@ -3,6 +3,7 @@ package me.josh.cubits.menus;
 import me.josh.cubits.Main;
 import me.josh.cubits.menus.shopkeepers.CubitGui;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.playerdata.PlayerUpgrades;
 import me.josh.cubits.playerdata.PlayerVariables;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -73,10 +74,10 @@ public class FishingUpgradeShop extends CubitGui {
         ItemMeta treats_meta = GEM_FINDER.getItemMeta();
         treats_meta.setDisplayName("Gem Finder");
         treats_meta.setCustomModelData(10101);
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_GEM_FINDER) == 1){
-            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Change to fish up a small bundle of gems.", "Cost: 20 Fishing Tokens" ));
+        if(!playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_GEM_FINDER)){
+            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Chance to fish up a small bundle of gems.", "Cost: 20 Fishing Tokens" ));
         }else{
-            treats_meta.setLore(Arrays.asList(ChatColor.GREEN + "Change to fish up a small bundle of gems.", "PURCHASED" ));
+            treats_meta.setLore(Arrays.asList(ChatColor.GREEN + "Chance to fish up a small bundle of gems.", "PURCHASED" ));
         }
         GEM_FINDER.setItemMeta(treats_meta);
 
@@ -98,10 +99,10 @@ public class FishingUpgradeShop extends CubitGui {
         treats_meta = DRESSED_SPINNER.getItemMeta();
         treats_meta.setDisplayName("Dressed Spinner");
         treats_meta.setCustomModelData(10101);
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_DRESSED_SPINNER) == 1){
-            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Increases the chance to hook rare fish.", "Cost: 30 Fishing Tokens" ));
+        if(!playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_DRESSED_SPINNER)){
+            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Increases the chance to hook rare fish and Cubits.", "Cost: 30 Fishing Tokens" ));
         }else{
-            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Increases the chance to hook rare fish.", "PURCHASED" ));
+            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Increases the chance to hook rare fish and Cubits.", "PURCHASED" ));
         }
         DRESSED_SPINNER.setItemMeta(treats_meta);
 
@@ -109,10 +110,10 @@ public class FishingUpgradeShop extends CubitGui {
         treats_meta = TREASURE_LURE.getItemMeta();
         treats_meta.setDisplayName("Treasure Lure");
         treats_meta.setCustomModelData(10101);
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_TREASURE_LURE) == 1){
-            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Increase the change to hook a treasure chest.", "Cost: 30 Fishing Tokens" ));
+        if(!playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_TREASURE_LURE)){
+            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Increase the chance to hook a treasure chest.", "Cost: 30 Fishing Tokens" ));
         }else{
-            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Increase the change to hook a treasure chest.", "PURCHASED" ));
+            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Increase the chance to hook a treasure chest.", "PURCHASED" ));
         }
         TREASURE_LURE.setItemMeta(treats_meta);
 
@@ -120,7 +121,7 @@ public class FishingUpgradeShop extends CubitGui {
         treats_meta = TITANIUM_LURE.getItemMeta();
         treats_meta.setDisplayName("Titanium Lure");
         treats_meta.setCustomModelData(10101);
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_TITANIUM_LURE) == 1){
+        if(!playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_TITANIUM_LURE)){
             treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Allows Titanic fish to be hooked.", "Cost: 30 Fishing Tokens" ));
         }else{
             treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Allows Titanic fish to be hooked.", "PURCHASED" ));
@@ -131,10 +132,10 @@ public class FishingUpgradeShop extends CubitGui {
         treats_meta = PRESERVE_LURE.getItemMeta();
         treats_meta.setDisplayName("Preserve Lure");
         treats_meta.setCustomModelData(10101);
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_PRESERVE_LURE) == 1){
-            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Change to not use up bait while fishing.", "Includes Ender Dragon, Wither, Elder Guardian, Warden, and Invoker.", "Enables various new item drops and enhanced Slayer Point rewards.", "Cost: 50 Fishing Tokens" ));
+        if(!playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_PRESERVE_LURE)){
+            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Chance to not use up bait while fishing.", "(Bait coming soon!)", "Cost: 50 Fishing Tokens" ));
         }else{
-            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Change to not use up bait while fishing.", "Includes Ender Dragon, Wither, Elder Guardian, Warden, and Invoker.", "Enables various new item drops and enhanced Slayer Point rewards.", "PURCHASED" ));
+            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Chance to not use up bait while fishing.", "(Bait coming soon!)", "PURCHASED" ));
         }
         PRESERVE_LURE.setItemMeta(treats_meta);
 
@@ -142,7 +143,7 @@ public class FishingUpgradeShop extends CubitGui {
         treats_meta = DOUBLE_HAUL.getItemMeta();
         treats_meta.setDisplayName("Double Haul");
         treats_meta.setCustomModelData(10101);
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_DOUBLE_HAUL) == 1){
+        if(!playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_DOUBLE_HAUL)){
             treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Chance to hook two fish at once.", "Cost: 50 Fishing Tokens" ));
         }else{
             treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Chance to hook two fish at once.", "PURCHASED" ));
@@ -153,10 +154,10 @@ public class FishingUpgradeShop extends CubitGui {
         treats_meta = SCAVANGER.getItemMeta();
         treats_meta.setDisplayName("Scavanger");
         treats_meta.setCustomModelData(10101);
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_SCAVANGER) == 1){
-            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Increase the change to hook ingredients and treats.", "Cost: 50 Fishing Tokens" ));
+        if(!playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_SCAVANGER)){
+            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Increase the chance to hook ingredients and treats.", "Cost: 50 Fishing Tokens" ));
         }else{
-            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Increase the change to hook ingredients and treats.", "PURCHASED" ));
+            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Increase the chance to hook ingredients and treats.", "PURCHASED" ));
         }
         SCAVANGER.setItemMeta(treats_meta);
 
@@ -164,7 +165,7 @@ public class FishingUpgradeShop extends CubitGui {
         treats_meta = FISHING_FRENZY.getItemMeta();
         treats_meta.setDisplayName("Fishing Frenzy");
         treats_meta.setCustomModelData(10101);
-        if(playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_FISHING_FRENZY) == 1){
+        if(!playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_FISHING_FRENZY)){
             treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Small chance to catch many of the same fish at once!", "Cost: 50 Fishing Tokens" ));
         }else{
             treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Small chance to catch many of the same fish at once!", "PURCHASED" ));
@@ -176,9 +177,9 @@ public class FishingUpgradeShop extends CubitGui {
         treats_meta.setDisplayName("Block Task");
         treats_meta.setCustomModelData(10101);
         if (playerProfile.getQuestFishBlocked() == null) {
-            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Blocks your current fishing task from being assigned, and skips it.", "Only one fishing task can be blocked at once.", "Blocked Task - None" ));
+            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Blocks your current fishing task from being assigned, and skips it.", "Only one fishing task can be blocked at once.", "Cost: 50 Fishing Tokens", "Blocked Task - None" ));
         }else{
-            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Blocks your current fishing task from being assigned, and skips it.", "Only one fishing task can be blocked at once.", "Blocked Task - " + playerProfile.getQuestFishBlocked().toString() ));
+            treats_meta.setLore(Arrays.asList(ChatColor.WHITE + "Blocks your current fishing task from being assigned, and skips it.", "Only one fishing task can be blocked at once.", "Cost: 50 Fishing Tokens", "Blocked Task - " + playerProfile.getQuestFishBlocked().toString() ));
         }
         BLOCK_SLOT.setItemMeta(treats_meta);
 
@@ -199,8 +200,8 @@ public class FishingUpgradeShop extends CubitGui {
         loreInt1 = playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_QUEST_AMOUNT);
         loreInt2 = playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_QUEST_TARGET_AMOUNT);
 
-        if(playerProfile.getSlayerMob() != null) {
-            lore1 = playerProfile.getQuestFish().toString();
+        if(playerProfile.getQuestFish() != null) {
+            lore1 = playerProfile.getQuestFish().getName();
         }else{
             lore1 = "No Active Task";
         }
@@ -222,9 +223,9 @@ public class FishingUpgradeShop extends CubitGui {
         gui.setItem(15, DOUBLE_HAUL);
         gui.setItem(16, SCAVANGER);
         gui.setItem(19, FISHING_FRENZY);
-        gui.setItem(20, BLOCK_SLOT);
-        gui.setItem(21, BLOCK_SLOT_CLEAR);
-        gui.setItem(22, EXTEND_TASK);
+        gui.setItem(20, EXTEND_TASK);
+        gui.setItem(21, BLOCK_SLOT);
+        gui.setItem(22, BLOCK_SLOT_CLEAR);
         gui.setItem(23, SKIP_TASK);
         gui.setItem(45, FISHING_TASK);
         gui.setItem(49, BACK_ICON);

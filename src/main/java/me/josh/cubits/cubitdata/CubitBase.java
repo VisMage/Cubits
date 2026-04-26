@@ -433,7 +433,7 @@ public class CubitBase {
         put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
     }}, Rarity.COMMON);
     public static final CubitBase FROGGO_GOLDEN = new CubitBase("Golden Froggo", "Vibing on his 24 karrot lillypad.","http://textures.minecraft.net/texture/382b2234cba02cdc386c15a3171f4bbd7506c734648cc0430eb5d6f8141e8245",
-            "Change to replace obtained Froggo types 1/3", "---", new HashMap<>(){{
+            "Chance to replace an obtained Froggo 1/3", "---", new HashMap<>(){{
         put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
         put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
     }}, Rarity.COMMON);
@@ -501,6 +501,36 @@ public class CubitBase {
     }}, Rarity.COMMON);
     public static final CubitBase ROCK = new CubitBase("Pet Rock", "Big thonk!", "http://textures.minecraft.net/texture/dd2f781f03c365bbc5dd1e7186ab38dc69465e836c9fe066a9a844f34a4da92",
             "Mine Stone 1/20000", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+
+
+
+
+
+    public static final CubitBase AXIE_JOLLY = new CubitBase("Jolly Axie", "Merry Christler!","http://textures.minecraft.net/texture/7ab5204881b2d4f9baac81b2ad5c1729fc7911aca33dec42d1f16fea4323b0b0",
+            "Fishing during Christmas event 1/300", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase SLIME_JOLLY = new CubitBase("Jolly Goober", "Merry Christler!","http://textures.minecraft.net/texture/6c25718604228e45f1d293eb5cb223790f7544b96a14c7ed4cfd3c8462a8948b",
+            "Slaying Slimes during Christmas event 1/3000", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase FROSTY_BLAZE = new CubitBase("Frosty Blaze", "Merry Christler!","http://textures.minecraft.net/texture/9617a34c8ff467fdb45be3ff17863fcff7e8424c8dd9b99666edd13b44b32e8c",
+            "Slaying Blazes during Christmas event 1/2000", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase FROSTY_SPIDER = new CubitBase("Frosty Spider", "Merry Christler!","http://textures.minecraft.net/texture/ffb18848e3ae28ad2f818b5107abf90a23a4da733604bffcf6cae10274850ac4",
+            "Slaying Spiders during Christmas event 1/3000", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase FROSTY_BUMBLE = new CubitBase("Frosty Bumble", "Merry Christler!","http://textures.minecraft.net/texture/59b54b0699827d4a69e4efe1c9015110da0be7433c0dcef58b6f9bff1fb438d8",
+            "Breeding Bees during Christmas event 1/500", "---", new HashMap<>(){{
         put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
         put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
     }}, Rarity.COMMON);

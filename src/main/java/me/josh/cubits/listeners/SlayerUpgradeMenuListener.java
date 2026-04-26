@@ -5,6 +5,7 @@ import me.josh.cubits.menus.SlayerTask;
 import me.josh.cubits.menus.SlayerUpgradeShop;
 import me.josh.cubits.playerdata.MiniGameToken;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.playerdata.PlayerUpgrades;
 import me.josh.cubits.playerdata.PlayerVariables;
 import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.Material;
@@ -73,12 +74,12 @@ public class SlayerUpgradeMenuListener implements Listener {
             SlayerUpgradeShop.OpenSlayerUpgradeStore(plugin, p);
 
         } else if (e.getCurrentItem().getType().equals(Material.COBWEB)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_SPIDER_SQUASHER) == 1 || tokens < 20) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.SLAYER_UPGRADE_SPIDER_SQUASHER) || tokens < 20) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.SLAYER_TOKENS, 20);
-                playerProfile.setPlayerVariable(PlayerVariables.SLAYER_UPGRADE_SPIDER_SQUASHER, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.SLAYER_UPGRADE_SPIDER_SQUASHER, true);
                 SlayerUpgradeShop.OpenSlayerUpgradeStore(plugin, p);
             }
 
@@ -94,52 +95,52 @@ public class SlayerUpgradeMenuListener implements Listener {
 
 
         } else if (e.getCurrentItem().getType().equals(Material.DRAGON_HEAD)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_DRAGON) == 1 || tokens < 30) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.SLAYER_UPGRADE_DRAGON) || tokens < 30) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.SLAYER_TOKENS, 30);
-                playerProfile.setPlayerVariable(PlayerVariables.SLAYER_UPGRADE_DRAGON, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.SLAYER_UPGRADE_DRAGON, true);
                 SlayerUpgradeShop.OpenSlayerUpgradeStore(plugin, p);
             }
 
         } else if (e.getCurrentItem().getType().equals(Material.WITHER_SKELETON_SKULL)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_WITHER) == 1 || tokens < 30) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.SLAYER_UPGRADE_WITHER) || tokens < 30) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.SLAYER_TOKENS, 30);
-                playerProfile.setPlayerVariable(PlayerVariables.SLAYER_UPGRADE_WITHER, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.SLAYER_UPGRADE_WITHER, true);
                 SlayerUpgradeShop.OpenSlayerUpgradeStore(plugin, p);
             }
 
         } else if (e.getCurrentItem().getType().equals(Material.SCULK_SENSOR)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_WARDEN) == 1 || tokens < 30) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.SLAYER_UPGRADE_WARDEN) || tokens < 30) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.SLAYER_TOKENS, 30);
-                playerProfile.setPlayerVariable(PlayerVariables.SLAYER_UPGRADE_WARDEN, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.SLAYER_UPGRADE_WARDEN, true);
                 SlayerUpgradeShop.OpenSlayerUpgradeStore(plugin, p);
             }
 
         } else if (e.getCurrentItem().getType().equals(Material.NETHER_STAR)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_BOSSRUSH) == 1 || tokens < 50) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.SLAYER_UPGRADE_BOSSRUSH) || tokens < 50) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.SLAYER_TOKENS, 50);
-                playerProfile.setPlayerVariable(PlayerVariables.SLAYER_UPGRADE_BOSSRUSH, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.SLAYER_UPGRADE_BOSSRUSH, true);
                 SlayerUpgradeShop.OpenSlayerUpgradeStore(plugin, p);
             }
 
         } else if (e.getCurrentItem().getType().equals(Material.DIAMOND)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.SLAYER_UPGRADE_POINTBOOST) == 1 || tokens < 50) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.SLAYER_UPGRADE_POINTBOOST) || tokens < 50) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.SLAYER_TOKENS, 50);
-                playerProfile.setPlayerVariable(PlayerVariables.SLAYER_UPGRADE_POINTBOOST, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.SLAYER_UPGRADE_POINTBOOST, true);
                 SlayerUpgradeShop.OpenSlayerUpgradeStore(plugin, p);
             }
 

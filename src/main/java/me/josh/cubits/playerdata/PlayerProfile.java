@@ -3,16 +3,16 @@ package me.josh.cubits.playerdata;
 import me.josh.cubits.Main;
 import me.josh.cubits.cubitdata.Cubit;
 import me.josh.cubits.cubitdata.CubitBase;
+import me.josh.cubits.cubitdata.CubitStat;
 import me.josh.cubits.cubitdata.Traits;
 import me.josh.cubits.cubitentity.CubitEntity;
 import me.josh.cubits.items.CubitItemStack;
 import me.josh.cubits.items.ItemBase;
 import me.josh.cubits.items.ItemType;
-import me.josh.cubits.items.ObtainTreat;
-import me.josh.cubits.menus.shopkeepers.ShopkeeperRandomStock;
 import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.*;
 
@@ -30,6 +30,7 @@ public class PlayerProfile {
     private HashMap<MiniGameToken, Integer> miniGameTokens;
     private HashMap<PlayerVariables, Integer> playerVariables;
     private HashMap<PlayerStat, Integer> stats;
+    private HashMap<PlayerUpgrades, Boolean> upgrades;
     private CubitPlayerInventory cubitPlayerInventory;
     private EntityType slayerMob;
     private EntityType slayerBlock;
@@ -38,11 +39,29 @@ public class PlayerProfile {
     private EntityType questMob3;
     private ItemBase questFish;
     private ItemBase questFishBlocked;
+    private boolean tradeReady;
+    private PlayerProfile tradePlayer;
+    private boolean ach1;
+    private boolean ach2;
+    private boolean ach3;
+    private boolean ach4;
+    private boolean ach5;
+    private CubitStat ach1Stat;
+    private ItemBase ach2ItemBase;
+    private EntityType ach3Mob;
+    private Material ach4Block;
+    private Material ach4BlockAlt;
+    private ItemBase ach5Fish;
+    private String achievementRewards;
+    private boolean achievementLast;
+    private boolean activateFishingFrenzy;
+    private boolean activateDoubleHaul;
+
 
     public PlayerProfile(){}
 
-    public PlayerProfile(UUID uuid, Player player){
-        this.uuid = uuid;
+    public PlayerProfile(Player player){
+        this.uuid = player.getUniqueId();
         username = player.getName();
         cubits = new ArrayList<Cubit>() {};
         activeCubitEntity = new CubitEntity();
@@ -54,12 +73,29 @@ public class PlayerProfile {
         for(MiniGameToken token : MiniGameToken.values()) {
             miniGameTokens.put(token, 0);
         }
+
+        miniGameTokens.put(MiniGameToken.COINS, 100);
+
+        upgrades = new HashMap<>();
+        for(PlayerUpgrades setupgrade : PlayerUpgrades.values()) {
+            upgrades.put(setupgrade, false);
+        }
+
         playerVariables = new HashMap<>();
         for(PlayerVariables token : PlayerVariables.values()) {
             playerVariables.put(token, 0);
+            playerVariables.put(PlayerVariables.ACHIEVEMENT_TIER, 1);
+            playerVariables.put(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_1, 1000);
+            playerVariables.put(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_2, 30);
+            playerVariables.put(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_3, 50);
+            playerVariables.put(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_4, 100);
+            playerVariables.put(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_5, 10);
         }
 
         cubitPlayerInventory = new CubitPlayerInventory();
+
+        tradeReady = false;
+        tradePlayer = null;
 
         //slayerMob = EntityType.ZOMBIE;
         slayerMob = null;
@@ -69,6 +105,23 @@ public class PlayerProfile {
         questMob3 = null;
         questFish = null;
         questFishBlocked = null;
+        ach1 = false;
+        ach2 = false;
+        ach3 = false;
+        ach4 = false;
+        ach5 = false;
+        ach1Stat = CubitStat.STAMINA;
+        ach2ItemBase = ItemBase.WHEAT;
+        ach3Mob = EntityType.SPIDER;
+        ach4Block = Material.COAL_ORE;
+        ach4BlockAlt = Material.DEEPSLATE_COAL_ORE;
+        ach5Fish = ItemBase.FISH_CARP;
+        achievementRewards = "100 Coins, 20 Sappleberries, 10 Fishy Crackers";
+        achievementLast = false;
+        activateFishingFrenzy = false;
+        activateDoubleHaul = false;
+
+
 
     }
 
@@ -97,8 +150,9 @@ public class PlayerProfile {
 
         Random r = new Random();
         float chance = r.nextFloat();
-        int shinyBoost = playerVariables.get(PlayerVariables.SHINY_CHARMS) * 5;
-        if (chance <= (200 + shinyBoost)/100000f) { // 1/500 Base odds, 20 shiny charms halves it to 1/250
+        int shinyBoost = playerVariables.get(PlayerVariables.SHINY_CHARMS) * 10;
+        if (chance <= (500 + shinyBoost)/100000f) { // At 50 shiny charms, 1/100 shiny odds
+            // (IF x5 and 200+, 1/500 Base odds, 20 shiny charms halves it to 1/250
             cubit.setShiny(1);
             SoundUtil.PlaySoundAll(Sound.ENTITY_GENERIC_EXPLODE, 1, 1);
         }
@@ -324,11 +378,150 @@ public class PlayerProfile {
         this.questFishBlocked = questFishBlocked;
     }
 
+    public boolean isAch5() {
+        return ach5;
+    }
 
+    public void setAch5(boolean ach5) {
+        this.ach5 = ach5;
+    }
 
+    public boolean isAch4() {
+        return ach4;
+    }
 
+    public void setAch4(boolean ach4) {
+        this.ach4 = ach4;
+    }
 
+    public boolean isAch3() {
+        return ach3;
+    }
 
+    public void setAch3(boolean ach3) {
+        this.ach3 = ach3;
+    }
 
-// End of Getters/Setters
+    public boolean isAch2() {
+        return ach2;
+    }
+
+    public void setAch2(boolean ach2) {
+        this.ach2 = ach2;
+    }
+
+    public boolean isAch1() {
+        return ach1;
+    }
+
+    public void setAch1(boolean ach1) {
+        this.ach1 = ach1;
+    }
+
+    public PlayerProfile getTradePlayer() {
+        return tradePlayer;
+    }
+
+    public void setTradePlayer(PlayerProfile tradePlayer) {
+        this.tradePlayer = tradePlayer;
+    }
+
+    public boolean isTradeReady() {
+        return tradeReady;
+    }
+
+    public void setTradeReady(boolean tradeReady) {
+        this.tradeReady = tradeReady;
+    }
+
+    public ItemBase getAch5Fish() {
+        return ach5Fish;
+    }
+
+    public void setAch5Fish(ItemBase ach5Fish) {
+        this.ach5Fish = ach5Fish;
+    }
+
+    public Material getAch4BlockAlt() {
+        return ach4BlockAlt;
+    }
+
+    public void setAch4BlockAlt(Material ach4BlockAlt) {
+        this.ach4BlockAlt = ach4BlockAlt;
+    }
+
+    public Material getAch4Block() {
+        return ach4Block;
+    }
+
+    public void setAch4Block(Material ach4Block) {
+        this.ach4Block = ach4Block;
+    }
+
+    public EntityType getAch3Mob() {
+        return ach3Mob;
+    }
+
+    public void setAch3Mob(EntityType ach3Mob) {
+        this.ach3Mob = ach3Mob;
+    }
+
+    public ItemBase getAch2ItemBase() {
+        return ach2ItemBase;
+    }
+
+    public void setAch2ItemBase(ItemBase ach2ItemBase) {
+        this.ach2ItemBase = ach2ItemBase;
+    }
+
+    public CubitStat getAch1Stat() {
+        return ach1Stat;
+    }
+
+    public void setAch1Stat(CubitStat ach1Stat) {
+        this.ach1Stat = ach1Stat;
+    }
+
+    public String getAchievementRewards() {
+        return achievementRewards;
+    }
+
+    public void setAchievementRewards(String achievementRewards) {
+        this.achievementRewards = achievementRewards;
+    }
+
+    public boolean isAchievementLast() {
+        return achievementLast;
+    }
+
+    public void setAchievementLast(boolean achievementLast) {
+        this.achievementLast = achievementLast;
+    }
+
+    public HashMap<PlayerUpgrades, Boolean> getUpgrades() {
+        return upgrades;
+    }
+
+    public void setUpgrades(PlayerUpgrades upgradeName, boolean value) {
+        //amt = amt < 0 ? 0 : amt; // Add to protect against negative values
+        upgrades.replace(upgradeName, value);
+    }
+
+    public boolean isActivateFishingFrenzy() {
+        return activateFishingFrenzy;
+    }
+
+    public void setActivateFishingFrenzy(boolean activateFishingFrenzy) {
+        this.activateFishingFrenzy = activateFishingFrenzy;
+    }
+
+    public boolean isActivateDoubleHaul() {
+        return activateDoubleHaul;
+    }
+
+    public void setActivateDoubleHaul(boolean activateDoubleHaul) {
+        this.activateDoubleHaul = activateDoubleHaul;
+    }
+
+    // End of Getters/Setters
 }

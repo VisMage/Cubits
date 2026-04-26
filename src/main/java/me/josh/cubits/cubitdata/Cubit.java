@@ -27,6 +27,7 @@ public class Cubit {
     private String trait5;
     private Map<CubitStat, Integer> grades;
     private Map<CubitStat, Integer> stats;
+    private Map<CubitRibbon, Boolean> ribbons;
     private String altSkin;
     private int serialNumber;
     private int rebirth;
@@ -43,6 +44,7 @@ public class Cubit {
         description = cubitBase.getDescription();
         grades = new HashMap<>();
         stats = new HashMap<>();
+        ribbons = new HashMap<>();
 
         Random rand = new Random(); // nextInt as provided by Random is exclusive of the top value so you need to add 1
 
@@ -51,6 +53,9 @@ public class Cubit {
         }
         for(CubitStat stat : CubitStat.values()) {
             stats.put(stat, 0);
+        }
+        for(CubitRibbon ribbon : CubitRibbon.values()) {
+            ribbons.put(ribbon, false);
         }
         starter = 0;
         shiny = 0;
@@ -73,6 +78,7 @@ public class Cubit {
         description = cubitBase.getDescription();
         grades = new HashMap<>();
         stats = new HashMap<>();
+        ribbons = new HashMap<>();
 
         Random rand = new Random(); // nextInt as provided by Random is exclusive of the top value so you need to add 1
 
@@ -81,6 +87,9 @@ public class Cubit {
         }
         for(CubitStat stat : CubitStat.values()) {
             stats.put(stat, 0);
+        }
+        for(CubitRibbon ribbon : CubitRibbon.values()) {
+            ribbons.put(ribbon, false);
         }
         starter = 0;
         shiny = 0;
@@ -285,6 +294,14 @@ public class Cubit {
 
     public void setHeldItem(ItemBase heldItem) {
         this.heldItem = heldItem;
+    }
+
+    public Map<CubitRibbon, Boolean> getRibbons() {
+        return ribbons;
+    }
+
+    public void setRibbons(Map<CubitRibbon, Boolean> ribbons) {
+        this.ribbons = ribbons;
     }
 
     //End of Getters and Setters

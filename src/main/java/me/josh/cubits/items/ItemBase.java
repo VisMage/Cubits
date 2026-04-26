@@ -232,7 +232,7 @@ public abstract class ItemBase {
 
 
 
-    public static final DummyItem WHEAT = new DummyItem("Wheat", "WHEAT",
+    public static final DummyItem WHEAT = new DummyItem("Pale Wheat", "WHEAT",
             "A high-quality ingredient used in cooking.", 999,
             "Harvesting Wheat 1/200", 10);
     public static final DummyItem SUNKISSED_WHEAT = new DummyItem("Sunkissed Wheat", "SUNKISSED_WHEAT",

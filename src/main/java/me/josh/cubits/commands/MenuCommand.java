@@ -3,8 +3,10 @@ package me.josh.cubits.commands;
 import me.josh.cubits.Main;
 import me.josh.cubits.cubitdata.CreateCubitHead;
 import me.josh.cubits.cubitdata.Cubit;
+import me.josh.cubits.menus.shopkeepers.CubitGui;
 import me.josh.cubits.playerdata.MiniGameToken;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.playerdata.PlayerVariables;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -16,7 +18,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.Arrays;
 
-public class MenuCommand implements SubCommand{
+public class MenuCommand extends CubitGui implements SubCommand{
     private static final String NAME = "Menu";
     private static final String DESCRIPTION = "Opens the player's Main Cubits Menu.";
     private static final  String ERROR_COLOR = "&c";
@@ -86,23 +88,23 @@ public class MenuCommand implements SubCommand{
         back_meta.setDisplayName("Back");
         back.setItemMeta(back_meta);
 
-        ItemStack item5 = new ItemStack(Material.PLAYER_HEAD, 1);
-        SkullMeta skullMeta = (SkullMeta)item5.getItemMeta();
-        skullMeta.setOwnerProfile(p.getPlayerProfile());
-        nameTemp = p.getDisplayName();
-        nameTemp = ChatColor.stripColor(nameTemp);
-        skullMeta.setDisplayName(ChatColor.BLUE + nameTemp);
-        loreInt1 = playerProfile.getMiniGameTokens().get(MiniGameToken.COINS);
-        loreInt2 = playerProfile.getMiniGameTokens().get(MiniGameToken.GEMS);
-        loreInt3 = playerProfile.getMiniGameTokens().get(MiniGameToken.SURVIVAL);
-        loreInt4 = playerProfile.getMiniGameTokens().get(MiniGameToken.COMBAT);
-        loreInt5 = playerProfile.getMiniGameTokens().get(MiniGameToken.FORAGING);
-        loreInt6 = playerProfile.getMiniGameTokens().get(MiniGameToken.FISHING);
-        loreInt7 = playerProfile.getMiniGameTokens().get(MiniGameToken.MYTHIC);
-        loreInt8 = playerProfile.getMiniGameTokens().get(MiniGameToken.SLAYER_TOKENS);
-        loreInt9 = playerProfile.getMiniGameTokens().get(MiniGameToken.ESSENCE);
-        skullMeta.setLore(Arrays.asList(ChatColor.LIGHT_PURPLE + "Coins: " + ChatColor.WHITE + loreInt1, ChatColor.LIGHT_PURPLE + "Gems: " + ChatColor.WHITE + loreInt2, ChatColor.LIGHT_PURPLE + "Survival Tokens: " + ChatColor.WHITE +  loreInt3, ChatColor.LIGHT_PURPLE + "Combat Tokens: " + ChatColor.WHITE + loreInt4, ChatColor.LIGHT_PURPLE + "Foraging Tokens: " + ChatColor.WHITE + loreInt5, ChatColor.LIGHT_PURPLE + "Fishing Tokens: " + ChatColor.WHITE + loreInt6, ChatColor.LIGHT_PURPLE + "Mythic Tokens: " + ChatColor.WHITE + loreInt7, ChatColor.LIGHT_PURPLE + "Slayer Tokens: " + ChatColor.WHITE + loreInt8 + "Essence: " + ChatColor.WHITE + loreInt9));
-        item5.setItemMeta(skullMeta);
+//        ItemStack item5 = new ItemStack(Material.PLAYER_HEAD, 1);
+//        SkullMeta skullMeta = (SkullMeta)item5.getItemMeta();
+//        skullMeta.setOwnerProfile(p.getPlayerProfile());
+//        nameTemp = p.getDisplayName();
+//        nameTemp = ChatColor.stripColor(nameTemp);
+//        skullMeta.setDisplayName(ChatColor.BLUE + nameTemp);
+//        loreInt1 = playerProfile.getMiniGameTokens().get(MiniGameToken.COINS);
+//        loreInt2 = playerProfile.getMiniGameTokens().get(MiniGameToken.GEMS);
+//        loreInt3 = playerProfile.getMiniGameTokens().get(MiniGameToken.SURVIVAL);
+//        loreInt4 = playerProfile.getMiniGameTokens().get(MiniGameToken.COMBAT);
+//        loreInt5 = playerProfile.getMiniGameTokens().get(MiniGameToken.FORAGING);
+//        loreInt6 = playerProfile.getMiniGameTokens().get(MiniGameToken.FISHING);
+//        loreInt7 = playerProfile.getMiniGameTokens().get(MiniGameToken.MYTHIC);
+//        loreInt8 = playerProfile.getMiniGameTokens().get(MiniGameToken.SLAYER_TOKENS);
+//        loreInt9 = playerProfile.getMiniGameTokens().get(MiniGameToken.ESSENCE);
+//        skullMeta.setLore(Arrays.asList(ChatColor.LIGHT_PURPLE + "Coins: " + ChatColor.WHITE + loreInt1, ChatColor.LIGHT_PURPLE + "Gems: " + ChatColor.WHITE + loreInt2, ChatColor.LIGHT_PURPLE + "Survival Tokens: " + ChatColor.WHITE +  loreInt3, ChatColor.LIGHT_PURPLE + "Combat Tokens: " + ChatColor.WHITE + loreInt4, ChatColor.LIGHT_PURPLE + "Foraging Tokens: " + ChatColor.WHITE + loreInt5, ChatColor.LIGHT_PURPLE + "Fishing Tokens: " + ChatColor.WHITE + loreInt6, ChatColor.LIGHT_PURPLE + "Mythic Tokens: " + ChatColor.WHITE + loreInt7, ChatColor.LIGHT_PURPLE + "Slayer Tokens: " + ChatColor.WHITE + loreInt8, ChatColor.LIGHT_PURPLE + "Essence: " + ChatColor.WHITE + loreInt9, ChatColor.LIGHT_PURPLE + "Shiny Charms: " + ChatColor.WHITE + playerProfile.getPlayerVariables().get(PlayerVariables.SHINY_CHARMS) + "/" + plugin.shinyCharmTotal));
+//        item5.setItemMeta(skullMeta);
 
         // ADD Currently Equipped Cubit too!
 
@@ -173,7 +175,8 @@ public class MenuCommand implements SubCommand{
         }
 
         // Set items into their proper slots
-        gui.setItem(4, item5);
+        gui.setItem(4, getPlayerHeadWithTokenStats(plugin, p));
+        //gui.setItem(4, item5);
         gui.setItem(8, petItemHead);
         gui.setItem(11, cubitsLead);
         gui.setItem(12, stats);

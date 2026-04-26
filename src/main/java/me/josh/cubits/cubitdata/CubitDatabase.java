@@ -130,6 +130,12 @@ public class CubitDatabase {
         CubitBaseDatabase.add(CubitBase.WARDEN);
         CubitBaseDatabase.add(CubitBase.ROCK);
 
+//        CubitBaseDatabase.add(CubitBase.AXIE_JOLLY);
+//        CubitBaseDatabase.add(CubitBase.SLIME_JOLLY);
+//        CubitBaseDatabase.add(CubitBase.FROSTY_BLAZE);
+//        CubitBaseDatabase.add(CubitBase.FROSTY_SPIDER);
+//        CubitBaseDatabase.add(CubitBase.FROSTY_BUMBLE);
+
 
 
 

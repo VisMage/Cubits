@@ -57,6 +57,9 @@ public class CommandManager implements CommandExecutor, TabCompleter {
         GiveItemCommand giveItemCommand = new GiveItemCommand();
         subCommandByName.put(giveItemCommand.getName().toLowerCase(), giveItemCommand);
 
+        GiftCommand giftCommand = new GiftCommand();
+        subCommandByName.put(giftCommand.getName().toLowerCase(), giftCommand);
+
         HelpCommand helpCommand = new HelpCommand();
         subCommandByName.put(helpCommand.getName().toLowerCase(), helpCommand);
 

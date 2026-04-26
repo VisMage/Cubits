@@ -1,24 +1,20 @@
 package me.josh.cubits.playerdata;
 
 import me.josh.cubits.Main;
-import me.josh.cubits.utils.PSerializable;
-import me.josh.cubits.utils.PlayerProfileSerializer;
-import me.josh.cubits.utils.Serializer;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class PlayerProfileManager implements PSerializable<PlayerProfileManager> {
+public class PlayerProfileManager {
     private final Main plugin;
-    private Serializer profileSerializer;
     private List<PlayerProfile> playerProfiles;
 
 
     public PlayerProfileManager(Main plugin) {
         this.plugin = plugin;
-        profileSerializer = new PlayerProfileSerializer(plugin);
         playerProfiles = new ArrayList<>();
     }
 
@@ -28,8 +24,12 @@ public class PlayerProfileManager implements PSerializable<PlayerProfileManager>
                 return;
         }
 
-        PlayerProfile playerProfile = new PlayerProfile(uuid, player);
+        PlayerProfile playerProfile = new PlayerProfile(player);
         playerProfiles.add(playerProfile);
+    }
+
+    public PlayerProfile getProfileOf(Player player){
+        return getProfileOf(player.getUniqueId());
     }
 
     public PlayerProfile getProfileOf(UUID uuid) {
@@ -41,6 +41,21 @@ public class PlayerProfileManager implements PSerializable<PlayerProfileManager>
         return null;
     }
 
+    public void unequipCubitsOnDisable(){
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            PlayerProfile playerProfile = getProfileOf(player.getUniqueId());
+            if (playerProfile == null){
+                continue;
+            }
+            if (!playerProfile.getActiveCubitEntity().isActive()){
+                continue;
+            }
+
+            playerProfile.getActiveCubitEntity().UnequipCubit();
+        }
+
+    }
+
 
     public List<PlayerProfile> getPlayerProfiles() {
         return playerProfiles;
@@ -50,13 +65,5 @@ public class PlayerProfileManager implements PSerializable<PlayerProfileManager>
         this.playerProfiles = playerProfiles;
     }
 
-    public void serialize() {
-        profileSerializer.serialize(playerProfiles);
-    }
 
-
-    @Override
-    public Serializer<PlayerProfileManager> serializer() {
-        return new PlayerProfileSerializer(plugin);
-    }
 }

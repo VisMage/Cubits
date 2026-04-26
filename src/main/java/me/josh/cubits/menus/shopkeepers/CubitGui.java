@@ -3,6 +3,7 @@ package me.josh.cubits.menus.shopkeepers;
 import me.josh.cubits.Main;
 import me.josh.cubits.playerdata.MiniGameToken;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.playerdata.PlayerVariables;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -58,7 +59,11 @@ public abstract class CubitGui {
                 ChatColor.LIGHT_PURPLE + "Fishing Tokens: " + ChatColor.WHITE + playerProfile.getMiniGameTokens().get(MiniGameToken.FISHING),
                 ChatColor.LIGHT_PURPLE + "Mythic Tokens: " + ChatColor.WHITE + playerProfile.getMiniGameTokens().get(MiniGameToken.MYTHIC),
                 ChatColor.LIGHT_PURPLE + "Slayer Tokens: " + ChatColor.WHITE + playerProfile.getMiniGameTokens().get(MiniGameToken.SLAYER_TOKENS),
-                ChatColor.LIGHT_PURPLE + "Essence: " + ChatColor.WHITE + playerProfile.getMiniGameTokens().get(MiniGameToken.ESSENCE)));
+                ChatColor.LIGHT_PURPLE + "Essence: " + ChatColor.WHITE + playerProfile.getMiniGameTokens().get(MiniGameToken.ESSENCE),
+                ChatColor.LIGHT_PURPLE + "Shiny Charms: " + ChatColor.WHITE + playerProfile.getPlayerVariables().get(PlayerVariables.SHINY_CHARMS) + "/" + plugin.shinyCharmTotal
+
+        ));
+
         playerHead.setItemMeta(skullMeta);
 
         return playerHead;

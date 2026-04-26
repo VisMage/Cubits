@@ -5,10 +5,13 @@ import me.josh.cubits.commands.BagCategoryCommand;
 import me.josh.cubits.commands.PetMenuCommand;
 import me.josh.cubits.commands.PlayerStatMenuCommand;
 import me.josh.cubits.commands.SummeryCommand;
+import me.josh.cubits.menus.AchievementMenu;
 import me.josh.cubits.menus.QuestMenu;
 import me.josh.cubits.menus.index.IndexMenu;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.playerdata.PlayerVariables;
 import me.josh.cubits.utils.SoundUtil;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -59,8 +62,15 @@ public class MenuListener implements Listener {
                 SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             }
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10007) { // Achievements
-            p.sendMessage("Achievements coming soon!");
             SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
+
+            if(playerProfile.getPlayerVariables().get(PlayerVariables.ACHIEVEMENT_TIER) == plugin.achievementRankMax){
+                p.sendMessage(ChatColor.ITALIC + "Current max achievement rank reached!");
+                p.sendMessage(ChatColor.ITALIC + "More ranks coming soon!");
+            }else{
+                AchievementMenu.openAchievementMenu(plugin, p);
+            }
+
         } else if (e.getCurrentItem().getType().equals(Material.CLOCK) && customModelDataValue == 10001) { // Cubits
             new PetMenuCommand().executeCommand(plugin, p, new String[]{"1"});
             SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);

@@ -3,6 +3,8 @@ package me.josh.cubits.listeners;
 import me.josh.cubits.Main;
 import me.josh.cubits.items.ItemBase;
 import me.josh.cubits.menus.TreasureChest;
+import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.playerdata.PlayerUpgrades;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
@@ -27,11 +29,17 @@ public class FindTreasureChestListener implements Listener {
     @EventHandler
     public void onPlayerFish(PlayerFishEvent event) {
         final Player player = event.getPlayer();
+        PlayerProfile playerProfile = plugin.getPlayerProfileManager().getProfileOf(player.getUniqueId());
+
+        int treasureLureOdds = 30;
+        if(playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_TREASURE_LURE)){
+            treasureLureOdds = 20;
+        }
 
         if (event.getCaught() instanceof Item) {
             Random r = new Random();
             float chance = r.nextFloat();
-            if (chance <= 1/30f) {
+            if (chance <= (float) 1 / treasureLureOdds) {
                 new TreasureChest().OpenTreasureChest(plugin, player, ItemBase.DUMMY, 1, 0);
             } else {
             }

@@ -4,6 +4,7 @@ import me.josh.cubits.Main;
 import me.josh.cubits.commands.PetMenuCommand;
 import me.josh.cubits.commands.SummeryCommand;
 import me.josh.cubits.items.ItemBase;
+import me.josh.cubits.menus.RibbonMenu;
 import me.josh.cubits.playerdata.PlayerProfile;
 import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.ChatColor;
@@ -43,7 +44,12 @@ public class SummeryListener implements Listener {
             SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
             new PetMenuCommand().executeCommand(plugin, player, new String[]{"1"});
 
-        } else if (e.getCurrentItem().getType().equals(Material.STRING)) {
+        } else if (e.getCurrentItem().getType().equals(Material.SPECTRAL_ARROW)) {
+            SoundUtil.PlaySoundAll(Sound.UI_BUTTON_CLICK, 1, 1);
+            //new PetMenuCommand().executeCommand(plugin, player, new String[]{"1"});
+            RibbonMenu.openRibbonMenu(plugin, player);
+
+        }else if (e.getCurrentItem().getType().equals(Material.STRING)) {
             SoundUtil.PlaySoundAll(Sound.ITEM_ARMOR_EQUIP_ELYTRA, 1, 1);
             ItemBase heldItem = playerProfile.getActiveCubitEntity().getCubit().getHeldItem();
             heldItem.OnUnequip(playerProfile.getActiveCubitEntity().getCubit(), playerProfile);
@@ -80,7 +86,6 @@ public class SummeryListener implements Listener {
                 e.getWhoClicked().sendMessage(ChatColor.RED + "You don't have a cubit equipped!");
                 return;
             }
-
 
         } //ADD MORE CLICKABLE ITEMS HERE (with an else if)
 

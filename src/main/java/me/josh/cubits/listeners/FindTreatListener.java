@@ -282,7 +282,7 @@ public class FindTreatListener implements Listener {
             if(age.getAge() == age.getMaximumAge()){
                 Random r = new Random();
                 float chance = r.nextFloat();
-                if (chance <= 1/200f) {
+                if (chance <= 1/200f) { //200
                     new ObtainTreat(plugin).GiveTreat(player, ItemBase.WHEAT);
                 } else {
                 }

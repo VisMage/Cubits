@@ -7,6 +7,7 @@ import me.josh.cubits.menus.SlayerTask;
 import me.josh.cubits.menus.SlayerUpgradeShop;
 import me.josh.cubits.playerdata.MiniGameToken;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.playerdata.PlayerUpgrades;
 import me.josh.cubits.playerdata.PlayerVariables;
 import me.josh.cubits.utils.SoundUtil;
 import org.bukkit.Material;
@@ -75,12 +76,12 @@ public class FishingUpgradeMenuListener implements Listener {
             FishingUpgradeShop.OpenFishingUpgradeStore(plugin, p);
 
         } else if (e.getCurrentItem().getType().equals(Material.DIAMOND)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_GEM_FINDER) == 1 || tokens < 20) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_GEM_FINDER) || tokens < 20) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.FISHING_TOKENS, 20);
-                playerProfile.setPlayerVariable(PlayerVariables.FISHING_UPGRADE_GEM_FINDER, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.FISHING_UPGRADE_GEM_FINDER, true);
                 FishingUpgradeShop.OpenFishingUpgradeStore(plugin, p);
             }
 
@@ -96,72 +97,72 @@ public class FishingUpgradeMenuListener implements Listener {
 
 
         } else if (e.getCurrentItem().getType().equals(Material.PRISMARINE_SHARD)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_DRESSED_SPINNER) == 1 || tokens < 30) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_DRESSED_SPINNER) || tokens < 30) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.FISHING_TOKENS, 30);
-                playerProfile.setPlayerVariable(PlayerVariables.FISHING_UPGRADE_DRESSED_SPINNER, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.FISHING_UPGRADE_DRESSED_SPINNER, true);
                 FishingUpgradeShop.OpenFishingUpgradeStore(plugin, p);
             }
 
         } else if (e.getCurrentItem().getType().equals(Material.CHEST)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_TREASURE_LURE) == 1 || tokens < 30) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_TREASURE_LURE) || tokens < 30) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.FISHING_TOKENS, 30);
-                playerProfile.setPlayerVariable(PlayerVariables.FISHING_UPGRADE_TREASURE_LURE, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.FISHING_UPGRADE_TREASURE_LURE, true);
                 FishingUpgradeShop.OpenFishingUpgradeStore(plugin, p);
             }
 
         } else if (e.getCurrentItem().getType().equals(Material.NETHERITE_SCRAP)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_TITANIUM_LURE) == 1 || tokens < 30) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_TITANIUM_LURE) || tokens < 30) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.FISHING_TOKENS, 30);
-                playerProfile.setPlayerVariable(PlayerVariables.FISHING_UPGRADE_TITANIUM_LURE, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.FISHING_UPGRADE_TITANIUM_LURE, true);
                 FishingUpgradeShop.OpenFishingUpgradeStore(plugin, p);
             }
 
         } else if (e.getCurrentItem().getType().equals(Material.GOLD_INGOT)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_PRESERVE_LURE) == 1 || tokens < 50) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_PRESERVE_LURE) || tokens < 50) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.FISHING_TOKENS, 50);
-                playerProfile.setPlayerVariable(PlayerVariables.FISHING_UPGRADE_PRESERVE_LURE, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.FISHING_UPGRADE_PRESERVE_LURE, true);
                 FishingUpgradeShop.OpenFishingUpgradeStore(plugin, p);
             }
 
         } else if (e.getCurrentItem().getType().equals(Material.SALMON_BUCKET)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_DOUBLE_HAUL) == 1 || tokens < 50) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_DOUBLE_HAUL)|| tokens < 50) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.FISHING_TOKENS, 50);
-                playerProfile.setPlayerVariable(PlayerVariables.FISHING_UPGRADE_DOUBLE_HAUL, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.FISHING_UPGRADE_DOUBLE_HAUL, true);
                 FishingUpgradeShop.OpenFishingUpgradeStore(plugin, p);
             }
 
         } else if (e.getCurrentItem().getType().equals(Material.KELP)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_SCAVANGER) == 1 || tokens < 50) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_SCAVANGER) || tokens < 50) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.FISHING_TOKENS, 50);
-                playerProfile.setPlayerVariable(PlayerVariables.FISHING_UPGRADE_SCAVANGER, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.FISHING_UPGRADE_SCAVANGER, true);
                 FishingUpgradeShop.OpenFishingUpgradeStore(plugin, p);
             }
 
         } else if (e.getCurrentItem().getType().equals(Material.PUFFERFISH)) {
-            if (playerProfile.getPlayerVariables().get(PlayerVariables.FISHING_UPGRADE_FISHING_FRENZY) == 1 || tokens < 50) {
+            if (playerProfile.getUpgrades().get(PlayerUpgrades.FISHING_UPGRADE_FISHING_FRENZY) || tokens < 50) {
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_BASEDRUM, 1, 1);
             }else{
                 SoundUtil.PlaySoundAll(Sound.BLOCK_NOTE_BLOCK_PLING, 1, 1);
                 playerProfile.removeMiniGameTokens(MiniGameToken.FISHING_TOKENS, 50);
-                playerProfile.setPlayerVariable(PlayerVariables.FISHING_UPGRADE_FISHING_FRENZY, 1);
+                playerProfile.setUpgrades(PlayerUpgrades.FISHING_UPGRADE_FISHING_FRENZY, true);
                 FishingUpgradeShop.OpenFishingUpgradeStore(plugin, p);
             }
 

@@ -54,6 +54,7 @@ public class Animator {
             armorStand.teleport(wolf.getLocation().add(0, -0.5 + bonusY, 0));
             wolf.setTarget(null);
 
+
         }
 
 

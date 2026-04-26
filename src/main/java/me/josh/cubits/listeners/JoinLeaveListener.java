@@ -9,9 +9,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-public class UnequipOnLeave implements Listener {
+public class JoinLeaveListener implements Listener {
     private final Main plugin;
-    public UnequipOnLeave(Main plugin) {
+    public JoinLeaveListener(Main plugin) {
         this.plugin = plugin;
     }
 
@@ -44,6 +44,10 @@ public class UnequipOnLeave implements Listener {
             //Despawn cubit
             playerProfile.getActiveCubitEntity().DespawnCubit();
         }
+
+        //Cancel pending trade
+        playerProfile.setTradeReady(false);
+        playerProfile.setTradePlayer(null);
 
     }
 

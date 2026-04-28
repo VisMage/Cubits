@@ -1,21 +1,24 @@
 package me.josh.cubits.cubitdata;
 
+import me.josh.cubits.items.HeldItem;
 import me.josh.cubits.items.ItemBase;
 import org.bukkit.entity.Player;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.UUID;
 
-public class Cubit {
+public class Cubit implements Serializable {
+    private static final long serialVersionUID = 4;
     private static final int STARTING_EXP = 100;
     private static final double EXP_MULTIPLIER = 0.1;
 
-    private CubitBase cubitBase;
+    private transient CubitBase cubitBase;
     private UUID uuid;
     private String name;
-    private  String description;
+    private String description;
     private int exp;
     private int rarity;
     private int starter;
@@ -33,7 +36,8 @@ public class Cubit {
     private int rebirth;
     private UUID originalOwnerUUID;
     private String originalOwnerName;
-    private ItemBase heldItem;
+    private transient ItemBase heldItem;
+    private int size;
 
 
 
@@ -69,6 +73,7 @@ public class Cubit {
         heldItem = ItemBase.NONE;
         originalOwnerUUID = player.getUniqueId();
         originalOwnerName = player.getName();
+        size = 1;
     }
 
     public Cubit(UUID uuid, CubitBase cubitBase){
@@ -101,9 +106,29 @@ public class Cubit {
         trait4 = "---";
         trait5 = "---";
         heldItem = ItemBase.NONE;
+        size = 1;
         //originalOwner = ;
     }
 
+    // Serialization Methods
+    @Serial
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.defaultWriteObject();
+        oos.writeUTF(cubitBase.getName());
+        oos.writeUTF(heldItem.getIdentifier());
+    }
+
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+
+        String cubitBaseName = ois.readUTF();
+        cubitBase = CubitDatabase.getCubitBase(cubitBaseName);
+
+        String heldItemIdentifier = ois.readUTF();
+        ItemBase loadedHeldItem = CubitDatabase.getAllItem(heldItemIdentifier);
+
+        heldItem = loadedHeldItem != null ? loadedHeldItem : ItemBase.NONE;
+    }
 
     // Getters and Setters
 
@@ -302,6 +327,14 @@ public class Cubit {
 
     public void setRibbons(Map<CubitRibbon, Boolean> ribbons) {
         this.ribbons = ribbons;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     //End of Getters and Setters

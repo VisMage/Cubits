@@ -47,7 +47,8 @@ public class GiftCommand implements SubCommand{
 
             playerProfile2.addCubit(playerProfile.getActiveCubitEntity().getCubit());
             playerProfile.removeCubit(playerProfile.getActiveCubitEntity().getCubit());
-            playerProfile.getActiveCubitEntity().UnequipCubit();
+            playerProfile.getActiveCubitEntity().UnequipCubit(playerProfile);
+            playerProfile.setLastEquippedCubit(null);
 
         } else {
             Utils.msg(p, "Error - Unknown player name");

@@ -122,7 +122,7 @@ public class SummeryCommand implements SubCommand{
         menu.setItem(0, back);
         menu.setItem(31, close);
         menu.setItem(27, unequip);
-        menu.setItem(35, pickup);
+        //menu.setItem(35, pickup);
 
         menu.setItem(11, info);
         menu.setItem(12, combatstyle);

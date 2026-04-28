@@ -9,3 +9,6 @@ commands:
   cb:
     description: Use /cb help to view all available commands.
     aliases: [CB, cubit, cubits, CUBIT, CUBITS, pet, PET]
+  starttreasuretracking:
+    description: Starts the Treasure Tracking minigame.
+    usage: /starttreasuretracking

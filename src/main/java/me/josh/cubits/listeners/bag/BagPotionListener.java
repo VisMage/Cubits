@@ -6,6 +6,7 @@ import me.josh.cubits.cubitdata.Cubit;
 import me.josh.cubits.cubitdata.CubitDatabase;
 import me.josh.cubits.items.CookingItem;
 import me.josh.cubits.items.ItemBase;
+import me.josh.cubits.items.PotionDurationManager;
 import me.josh.cubits.items.PotionItem;
 import me.josh.cubits.menus.BagCookingMenu;
 import me.josh.cubits.menus.BagPotionMenu;
@@ -132,9 +133,17 @@ public class BagPotionListener implements Listener {
                                 playerProfile.removeCubitItem(item.getId4() , item.getAmount4());
                                 playerProfile.removeCubitItem(item.getId5() , item.getAmount5());
                                 //playerProfile.addPlayerVariables(PlayerVariables.item, item.getUses());
-                                playerProfile.addPlayerVariables(PlayerVariables.LUCKY_POTION, item.getUses());
+                                //playerProfile.addPlayerVariables(PlayerVariables.LUCKY_POTION, item.getUses());
+
+                                PotionDurationManager.addPotionDuration(playerProfile, item);
+
+                                PlayerVariables potionVariable = PotionDurationManager.getVariableFor(item);
+                                int remainingMinutes = PotionDurationManager.getRemainingMinutes(playerProfile, potionVariable);
+
+                                p.sendMessage(ChatColor.LIGHT_PURPLE + "Brewed " + item.getName() + "! Duration is now " + PotionDurationManager.formatMinutes(remainingMinutes) + ".");
+
                                 BagPotionMenu.OpenBagPotion(plugin, p, 1);
-                                SoundUtil.PlaySoundAll(Sound.ENTITY_PLAYER_BURP, 1, 1);
+                                SoundUtil.PlaySoundAll(Sound.ENTITY_GENERIC_DRINK, 1, 1);
                                 return;
                             }
                         }

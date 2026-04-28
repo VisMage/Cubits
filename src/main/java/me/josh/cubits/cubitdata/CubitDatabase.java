@@ -56,10 +56,13 @@ public class CubitDatabase {
         CubitBaseDatabase.add(CubitBase.BLOOP_GLOW);
 
         CubitBaseDatabase.add(CubitBase.AXIE_SCULK);
+        CubitBaseDatabase.add(CubitBase.AXIE_CRYSTAL);
 
         CubitBaseDatabase.add(CubitBase.SHEEP_SILLY);
         CubitBaseDatabase.add(CubitBase.SHEEP_PUMPKIN);
         CubitBaseDatabase.add(CubitBase.COOKIE);
+
+        CubitBaseDatabase.add(CubitBase.CRABBY_PANCAKE);
 
         CubitBaseDatabase.add(CubitBase.CHUPPO);
 
@@ -124,11 +127,29 @@ public class CubitDatabase {
         CubitBaseDatabase.add(CubitBase.FLUFFLE_MARSHMALLOW);
         CubitBaseDatabase.add(CubitBase.FLUFFLE_CREAM);
 
+        CubitBaseDatabase.add(CubitBase.MIMIC_CHEST);
+
+        CubitBaseDatabase.add(CubitBase.SHELLY);
+        CubitBaseDatabase.add(CubitBase.SHELLY_RUSTIC);
+        CubitBaseDatabase.add(CubitBase.SHELLY_FROSTY);
+        CubitBaseDatabase.add(CubitBase.SHELLY_SAKURA);
+        CubitBaseDatabase.add(CubitBase.SHELLY_NUCLEAR);
+        CubitBaseDatabase.add(CubitBase.SHELLY_VANILLA);
+        CubitBaseDatabase.add(CubitBase.SHELLY_COCOA);
+
         CubitBaseDatabase.add(CubitBase.CREEPER_BABY);
+        CubitBaseDatabase.add(CubitBase.BLAZE_CRYSTAL);
         CubitBaseDatabase.add(CubitBase.TURTLE);
         CubitBaseDatabase.add(CubitBase.PHOENIX);
         CubitBaseDatabase.add(CubitBase.WARDEN);
         CubitBaseDatabase.add(CubitBase.ROCK);
+
+
+        CubitBaseDatabase.add(CubitBase.BUU);
+        //CubitBaseDatabase.add(CubitBase.IRIS_DARK);
+        //CubitBaseDatabase.add(CubitBase.IRIS_CRIMSON);
+
+        CubitBaseDatabase.add(CubitBase.GOOBER_PARTY);
 
 //        CubitBaseDatabase.add(CubitBase.AXIE_JOLLY);
 //        CubitBaseDatabase.add(CubitBase.SLIME_JOLLY);
@@ -458,6 +479,7 @@ public class CubitDatabase {
             }
 
         }
+        System.out.println("Unable to find ItemBase with identifier " + identifier);
         return null;
 
     }

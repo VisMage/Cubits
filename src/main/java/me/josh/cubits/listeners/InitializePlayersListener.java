@@ -30,6 +30,7 @@ public class InitializePlayersListener implements Listener {
         if(plugin.getPlayerProfileManager().getProfileOf(e.getPlayer()) != null)
             return;
         initializePlayer(e.getPlayer());
+        System.out.println("Creating new player profile.");
     }
 
 }

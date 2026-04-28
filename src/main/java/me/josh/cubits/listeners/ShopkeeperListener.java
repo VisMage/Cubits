@@ -42,7 +42,7 @@ public class ShopkeeperListener implements Listener {
             Villager v = (Villager)e.getRightClicked();
 
             // Open the correct shop menu
-            if (v.getCustomName() != null && v.getCustomName().equalsIgnoreCase("Treat Shop")) {
+            if (v.getCustomName() != null && v.getCustomName().equalsIgnoreCase("Carrot")) {
                 GeneralStoreMenu.OpenTreatStore(plugin, p, "Treat Shop", SetDailyShopStock.general_store_Item1, SetDailyShopStock.general_store_Item2, SetDailyShopStock.general_store_Item3, SetDailyShopStock.general_store_Item4, SetDailyShopStock.general_store_Item5, playerProfile.getPlayerVariables().get(PlayerVariables.FAVOR_GENERALSHOP));
                 SoundUtil.PlaySoundAll(Sound.ENTITY_VILLAGER_YES, 1, 1);
                 p.sendMessage(ChatColor.LIGHT_PURPLE + "Carrot: " + ChatColor.WHITE + "Welcome to my tasty treat shop! Anything catch your eye?");
@@ -54,7 +54,16 @@ public class ShopkeeperListener implements Listener {
             if (v.getCustomName() != null && v.getCustomName().equalsIgnoreCase("Desert Trader")) {
                 GeneralStoreMenu.OpenTreatStore(plugin, p, "Desert Trader", SetDailyShopStock.desert_store_Item1, SetDailyShopStock.desert_store_Item2, SetDailyShopStock.desert_store_Item3, SetDailyShopStock.desert_store_Item4, SetDailyShopStock.desert_store_Item5, playerProfile.getPlayerVariables().get(PlayerVariables.FAVOR_DESERT_TRADER));
                 SoundUtil.PlaySoundAll(Sound.ENTITY_VILLAGER_YES, 1, 1);
-                p.sendMessage(ChatColor.LIGHT_PURPLE + "Shayde: " + ChatColor.WHITE + "Welcome weary traveler!");
+                p.sendMessage(ChatColor.LIGHT_PURPLE + "Parch: " + ChatColor.WHITE + "Welcome weary traveler!");
+                e.setCancelled(true);
+                return;
+            }
+
+            // Open the correct shop menu
+            if (v.getCustomName() != null && v.getCustomName().equalsIgnoreCase("Curiosity Merchant")) {
+                GeneralStoreMenu.OpenTreatStore(plugin, p, "Curiosity Merchant", SetDailyShopStock.curiosity_merchant_Item1, SetDailyShopStock.curiosity_merchant_Item2, SetDailyShopStock.curiosity_merchant_Item3, SetDailyShopStock.desert_store_Item4, SetDailyShopStock.desert_store_Item5, playerProfile.getPlayerVariables().get(PlayerVariables.FAVOR_CUSIOSITY_SHOP));
+                SoundUtil.PlaySoundAll(Sound.ENTITY_VILLAGER_YES, 1, 1);
+                p.sendMessage(ChatColor.LIGHT_PURPLE + "Shayde: " + ChatColor.WHITE + "Welcome weary traveler...");
                 e.setCancelled(true);
                 return;
             }
@@ -83,6 +92,8 @@ public class ShopkeeperListener implements Listener {
             tempShopName = "Slayer Shop";
         }else if (e.getView().getTitle().startsWith("Fisherman Shop")){
             tempShopName = "Fisherman Shop";
+        }else if (e.getView().getTitle().startsWith("Curiosity Merchant")){
+            tempShopName = "Curiosity Merchant";
         }else{
             return;
         }
@@ -144,6 +155,9 @@ public class ShopkeeperListener implements Listener {
             }else if(tempShopName.equals("Fisherman Shop")){
                 playerProfile.addPlayerVariables(PlayerVariables.FAVOR_SLAYER_SHOP, 1);
                 FishermanShop.OpenFishermanShop(plugin, p, "Fisherman Shop", SetDailyShopStock.fishing_store_Item1, SetDailyShopStock.fishing_store_Item2, SetDailyShopStock.fishing_store_Item3, playerProfile.getPlayerVariables().get(PlayerVariables.FAVOR_FISHERMAN));
+            }else if(tempShopName.equals("Curiosity Merchant")){
+                playerProfile.addPlayerVariables(PlayerVariables.FAVOR_CUSIOSITY_SHOP, 1);
+                FishermanShop.OpenFishermanShop(plugin, p, "Curiosity Merchant", SetDailyShopStock.curiosity_merchant_Item1, SetDailyShopStock.curiosity_merchant_Item2, SetDailyShopStock.curiosity_merchant_Item3, playerProfile.getPlayerVariables().get(PlayerVariables.FAVOR_CUSIOSITY_SHOP));
             }else{
                 return;
             }
@@ -160,7 +174,7 @@ public class ShopkeeperListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(final InventoryDragEvent e) {
-        if (e.getView().getTitle().equals("Treat Shop") || e.getView().getTitle().equals("Desert Trader") || e.getView().getTitle().equals("Slayer Shop") || e.getView().getTitle().equals("Fisherman Shop")) {
+        if (e.getView().getTitle().equals("Treat Shop") || e.getView().getTitle().equals("Desert Trader") || e.getView().getTitle().equals("Slayer Shop") || e.getView().getTitle().equals("Fisherman Shop") || e.getView().getTitle().equals("Curiosity Merchant")) {
             e.setCancelled(true);
         }
     }

@@ -4,12 +4,14 @@ import me.josh.cubits.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class PlayerProfileManager {
-    private final Main plugin;
+public class PlayerProfileManager implements Serializable {
+    private static final long serialVersionUID = 7;
+    private transient final Main plugin;
     private List<PlayerProfile> playerProfiles;
 
 
@@ -34,7 +36,7 @@ public class PlayerProfileManager {
 
     public PlayerProfile getProfileOf(UUID uuid) {
         for(int i = 0; i < playerProfiles.size(); i++) {
-            if(uuid == playerProfiles.get(i).getUuid())
+            if(uuid.equals(playerProfiles.get(i).getUuid()))
                 return playerProfiles.get(i);
         }
 
@@ -51,7 +53,7 @@ public class PlayerProfileManager {
                 continue;
             }
 
-            playerProfile.getActiveCubitEntity().UnequipCubit();
+            playerProfile.getActiveCubitEntity().UnequipCubit(playerProfile);
         }
 
     }

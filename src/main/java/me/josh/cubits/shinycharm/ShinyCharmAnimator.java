@@ -49,13 +49,13 @@ public class ShinyCharmAnimator {
                 continue;
             }
 
-            Location particleLoc = armorStand.getLocation().add(0, 0.3, 0);
+            Location particleLoc = armorStand.getLocation().add(0, 1.7, 0);
 
             player.spawnParticle(
                     Particle.END_ROD,
                     particleLoc,
-                    3,
-                    0.25, 0.25, 0.25,
+                    2,
+                    0.20, 0.20, 0.20,
                     0.02
             );
         }

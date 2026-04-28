@@ -173,11 +173,16 @@ public class CubitBase {
     }}, Rarity.COMMON);
 
 
+    public static final CubitBase CRABBY_PANCAKE = new CubitBase("Pancake Crabby", "Scuttle-scuttle!","http://textures.minecraft.net/texture/7d6aec2541f1ee0457e6ffec00104d0690920b4a9546783a305efbd8ac39d01a",
+            "???", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
 
 
 
     public static final CubitBase CHUPPO = new CubitBase("Chuppo", "Little fella!","http://textures.minecraft.net/texture/1a174c1f004d1d19c3bf6723515ea0dc0d7c792a92e68238bb0a0c5a180d8842",
-            "Exotic Cubit Merchant", "---", new HashMap<>(){{
+            "Sold rarely at the Curiosity Merchant", "---", new HashMap<>(){{
         put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
         put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
     }}, Rarity.COMMON);
@@ -477,6 +482,48 @@ public class CubitBase {
     }}, Rarity.COMMON);
 
 
+    public static final CubitBase MIMIC_CHEST = new CubitBase("Chest Mimic", "He's got the goods!","http://textures.minecraft.net/texture/2ac2895fdbb8f698d7aac408ca647f7b5c16f3ca19669f4254e3a9221b6b30",
+            "Breeding Bees during Christmas event 1/500", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+
+
+    public static final CubitBase SHELLY = new CubitBase("Shelly", "Friendly little fella!","http://textures.minecraft.net/texture/50a9933a3b10489d38f6950c4e628bfcf9f7a27f8d84666f04f14d5374252972",
+            "???", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase SHELLY_RUSTIC = new CubitBase("Rustic Shelly", "Friendly little fella!","http://textures.minecraft.net/texture/103ec3e9740f3dfc2246c3f4ec9c931e1ce58f02014dc2e5b6375f997a7ca4a5",
+            "???", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase SHELLY_SAKURA = new CubitBase("Sakura Shelly", "She misses her big tree house, Jacob!","http://textures.minecraft.net/texture/5ce5223845a52ae25a3b90f774e8fbeefa968e4541fb0ae14b43c1ce1458f125",
+            "???", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase SHELLY_NUCLEAR = new CubitBase("Nuclear Shelly", "He's seen horrors no snail should ever see!","http://textures.minecraft.net/texture/3bbb0a9730151ad0654b45511aa84b9b0369c18f942c4ce615fb1c7120d036f9",
+            "???", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase SHELLY_FROSTY = new CubitBase("Frosty Shelly", "Here comes the iceberg!","http://textures.minecraft.net/texture/45230647ce08b24954e456c28ea3a1380500cb8cdcffead8dda9bfb8049bd157",
+            "???", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase SHELLY_VANILLA = new CubitBase("Vanilla Shelly", "Looks tasty!","http://textures.minecraft.net/texture/7b7081ef63558972887c3cb03af0a99fcd2762eb4c5ed301d8a976bc1e59f435",
+            "???", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase SHELLY_COCOA = new CubitBase("Cocoa Shelly", "Looks tasty!","http://textures.minecraft.net/texture/41c5e579f55e344b4fc0365de8346e621693b155ff5d817909fa3a0b806bbc94",
+            "???", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
 
 
     public static final CubitBase CREEPER_BABY = new CubitBase("Baby Creeper", "Loves to cuddle!","http://textures.minecraft.net/texture/60ac18acdf87d980b9fdcd95c79c9743c99d0694a90d96e5ff4f06ee78815403",
@@ -506,6 +553,30 @@ public class CubitBase {
     }}, Rarity.COMMON);
 
 
+    public static final CubitBase BUU = new CubitBase("Buu", "Very spooky!","http://textures.minecraft.net/texture/503c6479ff569d59cba9bd2c9e539d9e804c293ad011a07cd1dc68efb07c9e6a",
+            "???", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase IRIS_DARK = new CubitBase("Dark Iris", "???","http://textures.minecraft.net/texture/951ce0eb774ebb73341a925d9d54757d6106752c45b5fce1a5f394b99c29a2cf",
+            "???", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase IRIS_CRIMSON = new CubitBase("Crimson Iris", "???","http://textures.minecraft.net/texture/3a76b55303875962ac94dd0db41058333cc39c70cd4e915b0d6d1e085346f1e4",
+            "???", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+
+
+
+
+    public static final CubitBase GOOBER_PARTY = new CubitBase("Party Goober", "It's finally out! Woohoo!","http://textures.minecraft.net/texture/fe7294e330872de8c87085f94b58c0b8a42ed2c59cdbc6efdc526c5b58cff7b",
+            "Fishing during the Cubits anniversary event 1/300", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
 
 
 
@@ -534,6 +605,19 @@ public class CubitBase {
         put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
         put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
     }}, Rarity.COMMON);
+
+
+    public static final CubitBase AXIE_CRYSTAL = new CubitBase("Crystal Axie", "Pretty shiny!","http://textures.minecraft.net/texture/5317ae0dea872a6fa6e79a17a36551cb546fe29be49e8c3308992c069225c931",
+            "Breeding Bees during Christmas event 1/500", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+    public static final CubitBase BLAZE_CRYSTAL = new CubitBase("Crystal Blaze", "Very pretty!","http://textures.minecraft.net/texture/e0e8da3634e34438ef22d7fbfeaafb89d146ae3234c9d6626377617a3b9a6a74",
+            "Breeding Bees during Christmas event 1/500", "---", new HashMap<>(){{
+        put(CubitStat.STAMINA, 1.0); put(CubitStat.FLY, 1.0); put(CubitStat.SWIM, 1.0); put(CubitStat.POWER, 1.0);
+        put(CubitStat.RUN, 1.0); put(CubitStat.MYSTIC, 1.0); put(CubitStat.DARK_MAGIC, 1.0);
+    }}, Rarity.COMMON);
+
 
 
 

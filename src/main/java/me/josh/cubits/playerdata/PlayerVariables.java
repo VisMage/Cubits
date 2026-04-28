@@ -79,6 +79,7 @@ public enum PlayerVariables {
     QUEST_TYPE_3,
     QUEST_ID_3,
 
+    TREASURE_TRACKER_COMPLETED,
 
     LUCKY_POTION,
     BOUNTIFUL_POTION,

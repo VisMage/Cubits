@@ -111,12 +111,9 @@ public class PetMenu extends CubitGui {
             // REMOVED CODE HERE
             ItemStack petItem = new CreateCubitHead(plugin).NewCubitHead(player, cubit);
 
-            // ADD Cubit UUID to get for equipping!
-            //cubitID.put(slot, unlockedPets.get(i + (page - 1) * 28));
             gui.addItem(petItem);
         }
 
-        //cubitData.put(p.getUniqueId().toString(), cubitID);
         player.openInventory(gui);
     }
 
@@ -138,27 +135,6 @@ public class PetMenu extends CubitGui {
             currentPetMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Current Cubit");
             currentPet.setItemMeta(currentPetMeta);
 
-//            Cubit current = playerProfile.getActiveCubitEntity().getCubit();
-//            currentPet = CreateHead.createHead(current.getCubitBase().getDefaultSkin());
-//
-//            ItemMeta currentPetMeta = currentPet.getItemMeta();
-//
-//            NamespacedKey keyCurrent = new NamespacedKey(plugin, "uuid");
-//            currentPetMeta.getPersistentDataContainer().set(keyCurrent, PersistentDataType.STRING, current.getUuid().toString());
-//
-//            String skinCurrent;
-//            if(current.getAltSkin() == null){
-//                skinCurrent = current.getCubitBase().getDefaultSkin();
-//            }else{
-//                skinCurrent = current.getAltSkin();
-//            }
-//
-//            ArrayList<String> lore = new ArrayList<>();
-//            lore.add(current.getCubitBase().getName());
-//            lore.add(current.getCubitBase().getDescription());
-//            currentPetMeta.setLore(lore);
-//            currentPetMeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Current Cubit");
-//            currentPet.setItemMeta(currentPetMeta);
         }
 
         return currentPet;

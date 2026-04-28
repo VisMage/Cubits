@@ -2,7 +2,9 @@ package me.josh.cubits.cubitentity;
 
 import me.josh.cubits.Main;
 import me.josh.cubits.cubitdata.Cubit;
+import me.josh.cubits.playerdata.PlayerProfile;
 import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Wolf;
@@ -51,6 +53,12 @@ public class CubitEntity {
         armorStand.setPersistent(false);
         armorStand.getPersistentDataContainer().set(new NamespacedKey(Main.getPlugin(Main.class), "cubitUUID"), PersistentDataType.STRING, cubit.getUuid().toString());
 
+        if(cubit.getSize() == 2){
+            armorStand.getAttribute(Attribute.SCALE).setBaseValue(2);
+        } else if (cubit.getSize() == 3) {
+            armorStand.getAttribute(Attribute.SCALE).setBaseValue(3);
+        }
+
         SetCubitHead();
 
     }
@@ -79,7 +87,7 @@ public class CubitEntity {
 
 
 
-    public void UnequipCubit() {
+    public void UnequipCubit(PlayerProfile playerProfile) {
 
         if(wolf != null){
             wolf.remove();
@@ -92,6 +100,7 @@ public class CubitEntity {
         }
 
         cubit = null;
+        playerProfile.setLastEquippedCubit(null);
 
     }
 

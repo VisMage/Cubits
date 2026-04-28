@@ -2,6 +2,8 @@ package me.josh.cubits.commands;
 
 import me.josh.cubits.Main;
 import me.josh.cubits.menus.PetMenu;
+import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.utils.SoundUtil;
 import me.josh.cubits.utils.Utils;
 import org.bukkit.entity.Player;
 

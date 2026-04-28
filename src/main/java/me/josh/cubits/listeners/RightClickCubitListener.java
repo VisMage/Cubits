@@ -38,7 +38,8 @@ public class RightClickCubitListener implements Listener {
 
             //Cancel wolf sit
             Bukkit.getScheduler().runTaskLater(Main.getInstance(), () -> {
-                Wolf wolf = (Wolf) e.getRightClicked();
+                //Wolf wolf = (Wolf) e.getRightClicked();
+                Wolf wolf = playerProfile.getActiveCubitEntity().getWolf();
                 wolf.setSitting(false);
             }, 1);
 

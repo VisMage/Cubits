@@ -63,7 +63,7 @@ public class SummeryListener implements Listener {
             //Check if player has cubit equipped
             if (playerProfile.getActiveCubitEntity().getCubit() != null){
                 //Despawn cubit
-                playerProfile.getActiveCubitEntity().UnequipCubit();
+                playerProfile.getActiveCubitEntity().UnequipCubit(playerProfile);
                 //Send message
                 e.getWhoClicked().sendMessage(ChatColor.RED + "Cubit was unequipped.");
                 e.getWhoClicked().closeInventory();
@@ -78,7 +78,7 @@ public class SummeryListener implements Listener {
             //Check if player has cubit equipped
             if (playerProfile.getActiveCubitEntity().getCubit() != null){
                 //Despawn cubit
-                playerProfile.getActiveCubitEntity().UnequipCubit();
+                playerProfile.getActiveCubitEntity().UnequipCubit(playerProfile);
                 //Send message
                 e.getWhoClicked().sendMessage(ChatColor.RED + "Cubit was unequipped.");
                 e.getWhoClicked().closeInventory();

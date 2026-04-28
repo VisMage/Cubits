@@ -87,14 +87,8 @@ public class StarterListener implements Listener {
         UUID cubitUUID = playerProfile.getCubits().get(0).getUuid();
         Cubit selectedCubit = playerProfile.getCubitByUUID(cubitUUID);
         playerProfile.equipActiveCubit(plugin, p, selectedCubit);
+        playerProfile.setLastEquippedCubit(selectedCubit);
         playerProfile.addPlayerVariables(PlayerVariables.IF_STARTER, 1);
-
-        // Give Starting Recipes and Gold
-        playerProfile.addMiniGameTokens(MiniGameToken.COINS, 50);
-        playerProfile.addCubitItem(ItemBase.HONEYBUN, 1);
-        playerProfile.addCubitItem(ItemBase.SAPPLEBERRY_PIE, 1);
-        playerProfile.addCubitItem(ItemBase.BREAD, 1);
-        playerProfile.addCubitItem(ItemBase.COBBLEROLL, 1);
 
         // Close Inventory
         e.getWhoClicked().closeInventory();

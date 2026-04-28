@@ -1,11 +1,7 @@
 package me.josh.cubits.items;
 
 import me.josh.cubits.cubitdata.Cubit;
-import me.josh.cubits.cubitdata.CubitStat;
 import me.josh.cubits.playerdata.PlayerProfile;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class PotionItem extends ItemBase{
     private String ingredients;
@@ -19,13 +15,13 @@ public class PotionItem extends ItemBase{
     private int amount3;
     private int amount4;
     private int amount5;
-    private int uses;
+    private int durationMinutes;
 
 
 
     public PotionItem(){}
 
-    protected PotionItem(String name, String identifier, String description, int customModeldata, int uses, String glosseryObtain, int cost, String ingredients, ItemBase id1, ItemBase id2, ItemBase id3, ItemBase id4, ItemBase id5, int amount1, int amount2, int amount3, int amount4, int amount5) {
+    protected PotionItem(String name, String identifier, String description, int customModeldata, int minutes, String glosseryObtain, int cost, String ingredients, ItemBase id1, ItemBase id2, ItemBase id3, ItemBase id4, ItemBase id5, int amount1, int amount2, int amount3, int amount4, int amount5) {
         super(name, identifier, description, customModeldata, glosseryObtain, cost);
         itemType = ItemType.POTION_ITEM;
         this.ingredients = ingredients;
@@ -39,7 +35,12 @@ public class PotionItem extends ItemBase{
         this.amount3 = amount3;
         this.amount4 = amount4;
         this.amount5 = amount5;
-        this.uses = uses;
+        this.durationMinutes = minutes;
+    }
+
+    @Deprecated
+    public int getUses() {
+        return durationMinutes;
     }
 
     @Override
@@ -91,8 +92,8 @@ public class PotionItem extends ItemBase{
         return ingredients;
     }
 
-    public int getUses() {
-        return uses;
+    public int getDurationMinutes() {
+        return durationMinutes;
     }
 
     public void OnUnequip(Cubit cubit, PlayerProfile playerProfile){}

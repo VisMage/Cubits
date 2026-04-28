@@ -4,10 +4,12 @@ import me.josh.cubits.items.CubitItemStack;
 import me.josh.cubits.items.ItemBase;
 import me.josh.cubits.items.ItemType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CubitPlayerInventory {
+public class CubitPlayerInventory implements Serializable {
+    private static final long serialVersionUID = 2;
     private List<CubitItemStack> inventory;
 
     public CubitPlayerInventory() {
@@ -18,6 +20,8 @@ public class CubitPlayerInventory {
         if(amount <= 0){
             return;
         }
+
+
 
         for(int i = 0; i < inventory.size(); i++){
             if(inventory.get(i).getItemBase().equals(itemBase)){

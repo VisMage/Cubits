@@ -87,7 +87,7 @@ public class AchievementMenuListener  implements Listener {
                     new ObtainTreat(plugin).GiveTreat(p, ItemBase.FISHY_CRACKER);
                     new ObtainTreat(plugin).GiveTreat(p, ItemBase.FISHY_CRACKER);
                     playerProfile.addMiniGameTokens(MiniGameToken.COINS, 100);
-                    playerProfile.setAchievementRewards("100 Coins, 5 Sappleberries, 5 Fishy Crackers");
+                    playerProfile.setAchievementRewards("200 Coins, 5 Big Pretzels");
 
                     playerProfile.setAch1Stat(CubitStat.POWER);
                     playerProfile.setAch2ItemBase(ItemBase.SAPPLEBERRY);
@@ -96,7 +96,7 @@ public class AchievementMenuListener  implements Listener {
                     playerProfile.setAch4BlockAlt(Material.DEEPSLATE_COPPER_ORE);
                     playerProfile.setAch5Fish(ItemBase.FISH_SUNFISH);
 
-                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_1, 10);
+                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_1, 1500);
                     playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_2, 35);
                     playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_3, 100);
                     playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_4, 100);
@@ -104,6 +104,14 @@ public class AchievementMenuListener  implements Listener {
                 }
 
                 if(playerProfile.getPlayerVariables().get(PlayerVariables.ACHIEVEMENT_TIER) == 3){
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.PRETZEL);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.PRETZEL);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.PRETZEL);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.PRETZEL);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.PRETZEL);
+                    playerProfile.addMiniGameTokens(MiniGameToken.COINS, 200);
+                    playerProfile.setAchievementRewards("300 Coins, 5 Wyndberries, 3 Mossy Keys");
+
                     playerProfile.setAch1Stat(CubitStat.RUN);
                     playerProfile.setAch2ItemBase(ItemBase.COBBLE_CRUNCHIES);
                     playerProfile.setAch3Mob(EntityType.WITCH);
@@ -111,11 +119,68 @@ public class AchievementMenuListener  implements Listener {
                     playerProfile.setAch4BlockAlt(Material.BEDROCK);
                     playerProfile.setAch5Fish(ItemBase.FISH_MOONFISH);
 
-                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_1, 15);
+                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_1, 2000);
                     playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_2, 30);
                     playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_3, 30);
                     playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_4, 100);
                     playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_5, 15);
+                }
+
+                if(playerProfile.getPlayerVariables().get(PlayerVariables.ACHIEVEMENT_TIER) == 4){
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.WYNDBERRY);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.WYNDBERRY);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.WYNDBERRY);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.WYNDBERRY);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.WYNDBERRY);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.KEY_MOSSY);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.KEY_MOSSY);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.KEY_MOSSY);
+                    playerProfile.addMiniGameTokens(MiniGameToken.COINS, 300);
+                    playerProfile.setAchievementRewards("400 Coins, 10 Fishy Crackers, 3 Mossy Keys");
+
+                    playerProfile.setAch1Stat(CubitStat.SWIM);
+                    playerProfile.setAch2ItemBase(ItemBase.SNOWTATO);
+                    playerProfile.setAch3Mob(EntityType.STRAY);
+                    playerProfile.setAch4Block(Material.IRON_ORE);
+                    playerProfile.setAch4BlockAlt(Material.DEEPSLATE_IRON_ORE);
+                    playerProfile.setAch5Fish(ItemBase.FISH_CHUB);
+
+                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_1, 2250);
+                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_2, 40);
+                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_3, 50);
+                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_4, 100);
+                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_5, 15);
+                }
+
+                if(playerProfile.getPlayerVariables().get(PlayerVariables.ACHIEVEMENT_TIER) == 5){
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.FISHY_CRACKER);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.FISHY_CRACKER);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.FISHY_CRACKER);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.FISHY_CRACKER);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.FISHY_CRACKER);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.FISHY_CRACKER);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.FISHY_CRACKER);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.FISHY_CRACKER);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.FISHY_CRACKER);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.FISHY_CRACKER);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.KEY_MOSSY);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.KEY_MOSSY);
+                    new ObtainTreat(plugin).GiveTreat(p, ItemBase.KEY_MOSSY);
+                    playerProfile.addMiniGameTokens(MiniGameToken.COINS, 400);
+                    playerProfile.setAchievementRewards("500 Coins, 10 Dustberries, 3 Dusty Keys");
+
+                    playerProfile.setAch1Stat(CubitStat.FLY);
+                    playerProfile.setAch2ItemBase(ItemBase.DUSTBERRY);
+                    playerProfile.setAch3Mob(EntityType.HUSK);
+                    playerProfile.setAch4Block(Material.IRON_ORE);
+                    playerProfile.setAch4BlockAlt(Material.DEEPSLATE_IRON_ORE);
+                    playerProfile.setAch5Fish(ItemBase.FISH_SUNFISH);
+
+                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_1, 2500);
+                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_2, 40);
+                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_3, 75);
+                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_4, 150);
+                    playerProfile.setPlayerVariable(PlayerVariables.ACHIEVEMENT_TARGET_AMOUNT_5, 25);
                 }
 
                 if(playerProfile.getPlayerVariables().get(PlayerVariables.ACHIEVEMENT_TIER) == plugin.achievementRankMax){

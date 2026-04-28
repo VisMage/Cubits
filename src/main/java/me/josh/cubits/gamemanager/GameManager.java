@@ -6,11 +6,13 @@ import me.josh.cubits.cubitdata.GlobalCubitStatistics;
 import me.josh.cubits.cubitentity.Animator;
 import me.josh.cubits.cubitentity.CancelCubitGrieve;
 import me.josh.cubits.cubitentity.WolfTeleportRadius;
+import me.josh.cubits.items.PotionDurationTask;
 import me.josh.cubits.listeners.*;
 import me.josh.cubits.listeners.bag.*;
 import me.josh.cubits.listeners.index.*;
 import me.josh.cubits.menus.shopkeepers.SetDailyShopStock;
 import me.josh.cubits.playerdata.PlayerProfileManager;
+import me.josh.cubits.shinycharm.ShinyCharmAnimator;
 import me.josh.cubits.shinycharm.ShinyCharmListener;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
@@ -25,6 +27,7 @@ public class GameManager {
     private PlayerProfileManager playerProfileManager;
     private GlobalCubitStatistics globalCubitStatistic;
     private InitializePlayersListener cubitListener;
+    private ShinyCharmAnimator shinyCharmAnimator;
     private boolean shouldSaveGameData;
 
     public GameManager(Main plugin){
@@ -41,10 +44,14 @@ public class GameManager {
         }
         // Shop Items
         new SetDailyShopStock();
+
+        // Shiny Charm Animator
+        shinyCharmAnimator = new ShinyCharmAnimator(plugin);
+        shinyCharmAnimator.shinyOnEnable();
+
         registerListeners();
         runScheduledTasks();
     }
-
 
 
     public void registerListeners(){
@@ -94,6 +101,7 @@ public class GameManager {
         registerListener(new AchievementMenuListener(plugin));
         registerListener(new AchievementListener(plugin));
         registerListener(new ShinyCharmListener(plugin));
+        registerListener(new TreasureTrackerMenuListener(plugin));
 
     }
 
@@ -116,6 +124,8 @@ public class GameManager {
 
         // Run animations
         Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, () -> new Animator(plugin).runGlobalAnimation(), 0L, 2L);
+
+        new PotionDurationTask(plugin).runTaskTimer(plugin, 20L, 20L);
     }
 
     private boolean hasSaveFile(){

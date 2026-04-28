@@ -3,12 +3,10 @@ package me.josh.cubits.menus;
 import me.josh.cubits.Main;
 import me.josh.cubits.cubitdata.CreateCubitHead;
 import me.josh.cubits.cubitdata.Cubit;
-import me.josh.cubits.items.CookingItem;
-import me.josh.cubits.items.CubitItemStack;
-import me.josh.cubits.items.ItemType;
-import me.josh.cubits.items.PotionItem;
+import me.josh.cubits.items.*;
 import me.josh.cubits.menus.shopkeepers.CubitGui;
 import me.josh.cubits.playerdata.PlayerProfile;
+import me.josh.cubits.playerdata.PlayerVariables;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -103,7 +101,7 @@ public class BagPotionMenu extends CubitGui {
             //lore.add(ChatColor.WHITE + item.getIngredients());
 
 
-            lore.add(ChatColor.WHITE + "Uses - 0");
+            //lore.add(ChatColor.WHITE + "Uses - 0");
 //            if(potionItemBase.getAmount2() != 0) {
 //                if (!playerProfile.containsCubitItem(potionItemBase.getId2())) {
 //                    lore.add(ChatColor.WHITE + "Uses - 0");
@@ -112,6 +110,20 @@ public class BagPotionMenu extends CubitGui {
 //                }
 //            }
 
+            lore.add(ChatColor.LIGHT_PURPLE + potionItemBase.getDescription());
+            lore.add(ChatColor.WHITE + "");
+
+            PlayerVariables potionVariable = PotionDurationManager.getVariableFor(potionItemBase);
+            int remainingMinutes = PotionDurationManager.getRemainingMinutes(playerProfile, potionVariable);
+
+            lore.add(ChatColor.WHITE + "Current Duration: "
+                    + ChatColor.LIGHT_PURPLE
+                    + PotionDurationManager.formatMinutes(remainingMinutes));
+
+            lore.add(ChatColor.WHITE + "Brewing Adds: " + ChatColor.LIGHT_PURPLE + potionItemBase.getDurationMinutes() + "m");
+
+            lore.add(ChatColor.WHITE + "");
+            lore.add(ChatColor.WHITE + "Ingredients:");
 
             if(!playerProfile.containsCubitItem(potionItemBase.getId1())) {
                 lore.add(ChatColor.WHITE + potionItemBase.getId1().getName() + " x" + potionItemBase.getAmount1() + " (0)");

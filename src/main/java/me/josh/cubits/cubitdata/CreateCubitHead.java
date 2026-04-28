@@ -428,15 +428,34 @@ public class CreateCubitHead {
             skin = cubit.getAltSkin();
         }
 
-        if(cubit.getStarter() == 1 & cubit.getShiny() == 1){
-            meta.setDisplayName(cubit.getName() + " ♠★");
-        }else if (cubit.getShiny() == 1){
-            meta.setDisplayName(cubit.getName() + " ★");
-        }else if(cubit.getStarter() == 1){
-            meta.setDisplayName(cubit.getName() + " ♠");
-        }else{
-            meta.setDisplayName(cubit.getName());
+        String sizeName = "";
+        if(cubit.getSize() == 2){
+            sizeName = "Huge ";
+        } else if (cubit.getSize() == 3) {
+            sizeName = "Titanic ";
         }
+
+        String starterName = "";
+        if(cubit.getStarter() == 1){
+            starterName = "♠";
+        }
+
+        String shinyName = "";
+        if (cubit.getShiny() == 1){
+            shinyName = "★";
+        }
+
+        meta.setDisplayName(sizeName + cubit.getName() + " " + starterName + shinyName);
+
+//        if(cubit.getStarter() == 1 && cubit.getShiny() == 1){
+//            meta.setDisplayName(cubit.getName() + " ♠★");
+//        }else if (cubit.getShiny() == 1){
+//            meta.setDisplayName(cubit.getName() + " ★");
+//        }else if(cubit.getStarter() == 1){
+//            meta.setDisplayName(cubit.getName() + " ♠");
+//        }else{
+//            meta.setDisplayName(cubit.getName());
+//        }
 
         meta.setCustomModelData(293);
 

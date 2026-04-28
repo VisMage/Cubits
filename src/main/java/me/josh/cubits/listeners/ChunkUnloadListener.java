@@ -27,6 +27,7 @@ public class ChunkUnloadListener implements Listener {
                 //System.out.println(playerProfile.getActiveCubit().getWolf().getLocation());
 
                 Wolf wolf = playerProfile.getActiveCubitEntity().getWolf();
+                if(wolf == null) {return;}
                 if (wolf.isTamed() && wolf.getOwner() == player && wolf.getPersistentDataContainer().has(new NamespacedKey(plugin, "cubitUUID"), PersistentDataType.STRING)) {
                     double distance = wolf.getLocation().distance(player.getLocation());
                     if (distance > 80.0) {

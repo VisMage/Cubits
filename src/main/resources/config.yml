@@ -1,0 +1,8 @@
+treasure-tracking:
+  treasures:
+    - tag: "tt1"
+      hint: "The first treasure waits near the old oak."
+    - tag: "tt2"
+      hint: "Search where stone meets water."
+    - tag: "tt3"
+      hint: "A quiet corner hides the next prize."

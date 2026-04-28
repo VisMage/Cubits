@@ -95,7 +95,7 @@ public class PetMenuListener implements Listener {
             }
 
             //Unequip cubit
-            playerProfile.getActiveCubitEntity().UnequipCubit();
+            playerProfile.getActiveCubitEntity().UnequipCubit(playerProfile);
             Utils.msg(player, "&aUnequipped a Cubit!");
             e.getWhoClicked().closeInventory();
         }

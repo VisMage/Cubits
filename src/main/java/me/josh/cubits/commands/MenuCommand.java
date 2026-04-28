@@ -192,6 +192,9 @@ public class MenuCommand extends CubitGui implements SubCommand{
         gui.setItem(31, back);
         //gui.setItem(35, item10); // Dummy --- Item
 
+        //PlayerProfile profile = plugin.getPlayerProfileManager().getProfileOf(p.getUniqueId());
+        //plugin.getLogger().severe("First cubit name is " + profile.getCubits().get(0).getName());
+
         p.openInventory(gui);
 
     }

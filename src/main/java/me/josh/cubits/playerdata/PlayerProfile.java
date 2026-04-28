@@ -1,10 +1,7 @@
 package me.josh.cubits.playerdata;
 
 import me.josh.cubits.Main;
-import me.josh.cubits.cubitdata.Cubit;
-import me.josh.cubits.cubitdata.CubitBase;
-import me.josh.cubits.cubitdata.CubitStat;
-import me.josh.cubits.cubitdata.Traits;
+import me.josh.cubits.cubitdata.*;
 import me.josh.cubits.cubitentity.CubitEntity;
 import me.josh.cubits.items.CubitItemStack;
 import me.josh.cubits.items.ItemBase;
@@ -16,9 +13,11 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.*;
 
+import java.io.*;
 import java.util.*;
 
-public class PlayerProfile {
+public class PlayerProfile implements Serializable {
+    private static final long serialVersionUID = 1;
     private static final int STARTING_EXP = 100;
     private static final double EXP_MULTIPLIER = 0.1;
 
@@ -26,44 +25,50 @@ public class PlayerProfile {
     private UUID uuid;
     private String username;
     private List<Cubit> cubits;
-    private CubitEntity activeCubitEntity;
+    private Cubit lastEquippedCubit;
+    private transient CubitEntity activeCubitEntity;
     private HashMap<MiniGameToken, Integer> miniGameTokens;
     private HashMap<PlayerVariables, Integer> playerVariables;
     private HashMap<PlayerStat, Integer> stats;
     private HashMap<PlayerUpgrades, Boolean> upgrades;
+    private List<String> shinyCharms;
     private CubitPlayerInventory cubitPlayerInventory;
-    private EntityType slayerMob;
-    private EntityType slayerBlock;
-    private EntityType questMob1;
-    private EntityType questMob2;
-    private EntityType questMob3;
-    private ItemBase questFish;
-    private ItemBase questFishBlocked;
+    private transient EntityType slayerMob;
+    private transient EntityType slayerBlock;
+    private transient EntityType questMob1;
+    private transient EntityType questMob2;
+    private transient EntityType questMob3;
+    private transient ItemBase questFish;
+    private transient ItemBase questFishBlocked;
     private boolean tradeReady;
-    private PlayerProfile tradePlayer;
     private boolean ach1;
     private boolean ach2;
     private boolean ach3;
     private boolean ach4;
     private boolean ach5;
     private CubitStat ach1Stat;
-    private ItemBase ach2ItemBase;
-    private EntityType ach3Mob;
-    private Material ach4Block;
-    private Material ach4BlockAlt;
-    private ItemBase ach5Fish;
+    private transient ItemBase ach2ItemBase;
+    private transient EntityType ach3Mob;
+    private transient Material ach4Block;
+    private transient Material ach4BlockAlt;
+    private transient ItemBase ach5Fish;
     private String achievementRewards;
     private boolean achievementLast;
     private boolean activateFishingFrenzy;
     private boolean activateDoubleHaul;
+    private int treasureTrackerStep;
+    private int profileVersion;
 
 
     public PlayerProfile(){}
 
     public PlayerProfile(Player player){
+        profileVersion = 1;
+
         this.uuid = player.getUniqueId();
         username = player.getName();
         cubits = new ArrayList<Cubit>() {};
+        lastEquippedCubit = null;
         activeCubitEntity = new CubitEntity();
         stats = new HashMap<>();
         for(PlayerStat stat : PlayerStat.values()) {
@@ -74,12 +79,12 @@ public class PlayerProfile {
             miniGameTokens.put(token, 0);
         }
 
-        miniGameTokens.put(MiniGameToken.COINS, 100);
-
         upgrades = new HashMap<>();
         for(PlayerUpgrades setupgrade : PlayerUpgrades.values()) {
             upgrades.put(setupgrade, false);
         }
+
+        shinyCharms = new ArrayList<String>() {};
 
         playerVariables = new HashMap<>();
         for(PlayerVariables token : PlayerVariables.values()) {
@@ -94,8 +99,15 @@ public class PlayerProfile {
 
         cubitPlayerInventory = new CubitPlayerInventory();
 
+        // Give Starting Recipes and Gold
+        miniGameTokens.put(MiniGameToken.COINS, 100);
+        cubitPlayerInventory.addItem(ItemBase.HONEYBUN, 1);
+        cubitPlayerInventory.addItem(ItemBase.SAPPLEBERRY_PIE, 1);
+        cubitPlayerInventory.addItem(ItemBase.BREAD, 1);
+        cubitPlayerInventory.addItem(ItemBase.COBBLEROLL, 1);
+        cubitPlayerInventory.addItem(ItemBase.SHINY_POTION, 1);
+
         tradeReady = false;
-        tradePlayer = null;
 
         //slayerMob = EntityType.ZOMBIE;
         slayerMob = null;
@@ -120,10 +132,12 @@ public class PlayerProfile {
         achievementLast = false;
         activateFishingFrenzy = false;
         activateDoubleHaul = false;
+        treasureTrackerStep = 0;
 
 
-
+        ensurePlayerVariables();
     }
+
 
     public void addCubit(Cubit cubit) {
         cubits.add(cubit);
@@ -176,6 +190,8 @@ public class PlayerProfile {
         for(Cubit cubitElement : cubits){
             if(selectedCubit == cubitElement){
                 activeCubitEntity.EquipCubit(plugin, player, selectedCubit);
+                PlayerProfile playerProfile = plugin.getPlayerProfileManager().getProfileOf(player.getUniqueId());
+                playerProfile.setLastEquippedCubit(selectedCubit);
             }
         }
     }
@@ -226,21 +242,157 @@ public class PlayerProfile {
         miniGameTokens.replace(tokenType, tokenValue);
     }
 
-    public void addPlayerVariables(PlayerVariables variableName, int amt) {
-        amt = amt < 0 ? 0 : amt;
-        playerVariables.replace(variableName, amt + playerVariables.get(variableName));
+//    public void addPlayerVariables(PlayerVariables variableName, int amt) {
+//        amt = amt < 0 ? 0 : amt;
+//        playerVariables.replace(variableName, amt + playerVariables.get(variableName));
+//    }
+//
+//    public void removePlayerVariables(PlayerVariables variableName, int amt) {
+//        amt = amt < 0 ? 0 : amt;
+//        int variableValue = playerVariables.get(variableName) - amt >= 0 ? playerVariables.get(variableName) - amt : 0;
+//        playerVariables.replace(variableName, amt + playerVariables.get(variableName));
+//    }
+//
+//    public void setPlayerVariable(PlayerVariables variableName, int amt) {
+//        //amt = amt < 0 ? 0 : amt; // Add to protect against negative values
+//        playerVariables.replace(variableName, amt);
+//    }
+
+    public int getPlayerVariable(PlayerVariables variable) {
+        if (playerVariables == null) {
+            playerVariables = new HashMap<>();
+        }
+
+        playerVariables.putIfAbsent(variable, 0);
+        return playerVariables.get(variable);
     }
 
-    public void removePlayerVariables(PlayerVariables variableName, int amt) {
-        amt = amt < 0 ? 0 : amt;
-        int variableValue = playerVariables.get(variableName) - amt >= 0 ? playerVariables.get(variableName) - amt : 0;
-        playerVariables.replace(variableName, amt + playerVariables.get(variableName));
+//    public int getPlayerVariables(PlayerVariables variable) { // REMOVE EITHER THIS ONE OF ABOVE
+//        if (playerVariables == null) {
+//            playerVariables = new HashMap<>();
+//        }
+//
+//        playerVariables.putIfAbsent(variable, 0);
+//        return playerVariables.get(variable);
+//    }
+
+//    public void setPlayerVariables(HashMap<PlayerVariables, Integer> playerVariables) {
+//        this.playerVariables = playerVariables;
+//    }
+
+    public HashMap<PlayerVariables, Integer> getPlayerVariables() {
+        return playerVariables;
     }
 
-    public void setPlayerVariable(PlayerVariables variableName, int amt) {
-        //amt = amt < 0 ? 0 : amt; // Add to protect against negative values
-        playerVariables.replace(variableName, amt);
+    public void addPlayerVariables(PlayerVariables variable, int amount) {
+        if (amount <= 0) {
+            return;
+        }
+
+        playerVariables.putIfAbsent(variable, 0);
+        playerVariables.put(variable, getPlayerVariable(variable) + amount);
     }
+
+    public void removePlayerVariables(PlayerVariables variable, int amount) {
+        if (amount <= 0) {
+            return;
+        }
+
+        int newValue = Math.max(0, getPlayerVariable(variable) - amount);
+        playerVariables.put(variable, newValue);
+    }
+
+    public void setPlayerVariable(PlayerVariables variable, int amount) {
+        playerVariables.put(variable, Math.max(0, amount));
+    }
+
+    public void ensurePlayerVariables() {
+        if (playerVariables == null) {
+            playerVariables = new HashMap<>();
+        }
+
+        for (PlayerVariables variable : PlayerVariables.values()) {
+            playerVariables.putIfAbsent(variable, 0);
+        }
+    }
+
+
+    // Serialization Methods
+
+    private static void writeEntityType(ObjectOutputStream oos, EntityType type) throws IOException {
+        oos.writeUTF(type == null ? "" : type.name());
+    }
+
+    private static void writeItemBase(ObjectOutputStream oos, ItemBase item) throws IOException {
+        oos.writeUTF(item == null ? "" : item.getIdentifier());
+    }
+
+    private static void writeMaterial(ObjectOutputStream oos, Material material) throws IOException {
+        oos.writeUTF(material == null ? "" : material.name());
+    }
+
+    private void writeObject(ObjectOutputStream oos) throws IOException {
+        oos.defaultWriteObject();
+
+        writeEntityType(oos, slayerMob);
+        writeEntityType(oos, slayerBlock);
+        writeEntityType(oos, questMob1);
+        writeEntityType(oos, questMob2);
+        writeEntityType(oos, questMob3);
+
+        writeItemBase(oos, questFish);
+        writeItemBase(oos, questFishBlocked);
+
+        writeEntityType(oos, ach3Mob);
+        writeItemBase(oos, ach2ItemBase);
+        writeItemBase(oos, ach5Fish);
+        writeMaterial(oos, ach4Block);
+        writeMaterial(oos, ach4BlockAlt);
+    }
+
+    private static EntityType readEntityType(ObjectInputStream ois) throws IOException {
+        String name = ois.readUTF();
+        return name == null || name.isBlank() ? null : EntityType.valueOf(name);
+    }
+
+    private static ItemBase readItemBase(ObjectInputStream ois) throws IOException {
+        String identifier = ois.readUTF();
+
+        if (identifier == null || identifier.isBlank()) {
+            return null;
+        }
+
+        return CubitDatabase.getAllItem(identifier);
+    }
+
+    private static Material readMaterial(ObjectInputStream ois) throws IOException {
+        String name = ois.readUTF();
+        return name == null || name.isBlank() ? null : Material.getMaterial(name);
+    }
+
+    private void readObject(ObjectInputStream ois)
+            throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+
+        slayerMob = readEntityType(ois);
+        slayerBlock = readEntityType(ois);
+        questMob1 = readEntityType(ois);
+        questMob2 = readEntityType(ois);
+        questMob3 = readEntityType(ois);
+
+        questFish = readItemBase(ois);
+        questFishBlocked = readItemBase(ois);
+
+        ach3Mob = readEntityType(ois);
+        ach2ItemBase = readItemBase(ois);
+        ach5Fish = readItemBase(ois);
+        ach4Block = readMaterial(ois);
+        ach4BlockAlt = readMaterial(ois);
+
+        activeCubitEntity = new CubitEntity();
+        ensurePlayerVariables();
+    }
+
 
     // Getters and Setters
     public UUID getUuid() {
@@ -279,16 +431,8 @@ public class PlayerProfile {
         this.miniGameTokens = miniGameTokens;
     }
 
-    public void setPlayerVariables(HashMap<PlayerVariables, Integer> playerVariables) {
-        this.playerVariables = playerVariables;
-    }
-
     public HashMap<MiniGameToken, Integer> getMiniGameTokens() {
         return miniGameTokens;
-    }
-
-    public HashMap<PlayerVariables, Integer> getPlayerVariables() {
-        return playerVariables;
     }
 
     public int getExp() {
@@ -418,14 +562,6 @@ public class PlayerProfile {
         this.ach1 = ach1;
     }
 
-    public PlayerProfile getTradePlayer() {
-        return tradePlayer;
-    }
-
-    public void setTradePlayer(PlayerProfile tradePlayer) {
-        this.tradePlayer = tradePlayer;
-    }
-
     public boolean isTradeReady() {
         return tradeReady;
     }
@@ -521,6 +657,43 @@ public class PlayerProfile {
 
     public void setActivateDoubleHaul(boolean activateDoubleHaul) {
         this.activateDoubleHaul = activateDoubleHaul;
+    }
+
+    public List<String> getShinyCharms() {
+        return shinyCharms;
+    }
+
+    public void setShinyCharms(List<String> shinyCharms) {
+        this.shinyCharms = shinyCharms;
+    }
+
+    public List<String> addShinyCharms(String shinyCharmID) {
+        this.shinyCharms.add(shinyCharmID);
+        return null;
+    }
+
+    public int getTreasureTrackerStep() {
+        return treasureTrackerStep;
+    }
+
+    public void setTreasureTrackerStep(int treasureTrackerStep) {
+        this.treasureTrackerStep = treasureTrackerStep;
+    }
+
+    public Cubit getLastEquippedCubit() {
+        return lastEquippedCubit;
+    }
+
+    public void setLastEquippedCubit(Cubit lastEquippedCubit) {
+        this.lastEquippedCubit = lastEquippedCubit;
+    }
+
+    public int getProfileVersion() {
+        return profileVersion;
+    }
+
+    public void setProfileVersion(int profileVersion) {
+        this.profileVersion = profileVersion;
     }
 
     // End of Getters/Setters

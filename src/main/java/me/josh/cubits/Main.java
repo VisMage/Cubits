@@ -15,6 +15,7 @@ import me.josh.cubits.menus.shopkeepers.SetDailyShopStock;
 import me.josh.cubits.playerdata.PlayerProfile;
 import me.josh.cubits.playerdata.PlayerProfileManager;
 import me.josh.cubits.shinycharm.ShinyCharmAnimator;
+import me.josh.cubits.treasuretracker.TreasureTrackingManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,9 +26,9 @@ import java.nio.file.Files;
 public class Main extends JavaPlugin {
     static Main instance;
     private GameManager gameManager;
-    private ShinyCharmAnimator shinyCharmAnimator;
-    public int achievementRankMax = 4;
+    public int achievementRankMax = 6;
     public int shinyCharmTotal = 50;
+    private TreasureTrackingManager treasureTrackingManager;
 
     @Override
     public void onEnable() {
@@ -39,8 +40,9 @@ public class Main extends JavaPlugin {
         // Setting the command executor class for the "cb" command
         getCommand("cb").setExecutor(new CommandManager(this));
 
-        shinyCharmAnimator = new ShinyCharmAnimator(this);
-        shinyCharmAnimator.shinyOnEnable();
+        // Treasure Tracking
+        this.treasureTrackingManager = new TreasureTrackingManager(this);
+        this.treasureTrackingManager.enable();
 
         // Enable Message
         System.out.println("================================");
@@ -51,8 +53,13 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable() {
 
-        getPlayerProfileManager().unequipCubitsOnDisable();
-        //gameManager.saveGameData(); // Disabled for now, crashes while testing since it's incomplete
+        if (gameManager != null && gameManager.getPlayerProfileManager() != null) {
+            gameManager.getPlayerProfileManager().unequipCubitsOnDisable();
+        }
+
+        if (gameManager != null) {
+            gameManager.saveGameData();
+        }
 
         // Disable Message
         System.out.println("================================");
@@ -77,6 +84,10 @@ public class Main extends JavaPlugin {
 
     public GlobalCubitStatistics getGlobalCubitStatistics(){
         return gameManager.getGlobalCubitStatistic();
+    }
+
+    public TreasureTrackingManager getTreasureTrackingManager() {
+        return treasureTrackingManager;
     }
 
     //Option for other classes to get the instance of the MainClass

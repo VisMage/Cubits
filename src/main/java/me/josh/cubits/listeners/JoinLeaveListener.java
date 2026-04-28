@@ -27,6 +27,15 @@ public class JoinLeaveListener implements Listener {
 
             //Despawn cubit
             playerProfile.getActiveCubitEntity().EquipCubit(plugin, player, cubit);
+
+            //Equip last equipped cubit
+            if(playerProfile.getLastEquippedCubit() != null){
+                playerProfile.equipActiveCubit(plugin, player, playerProfile.getLastEquippedCubit());
+            }
+
+            //Reset Treasure Tracker Steps
+            playerProfile.setTreasureTrackerStep(0);
+
         }
 
     }
@@ -47,7 +56,10 @@ public class JoinLeaveListener implements Listener {
 
         //Cancel pending trade
         playerProfile.setTradeReady(false);
-        playerProfile.setTradePlayer(null);
+        //playerProfile.setTradePlayer(null);
+
+        //Reset Treasure Tracker Steps
+        playerProfile.setTreasureTrackerStep(0);
 
     }
 
